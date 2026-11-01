@@ -1,0 +1,30 @@
+{
+  "task": "INGEST-1",
+  "gate": "unit",
+  "kind": "command",
+  "attempt": "d1142cf0-9f62-46d4-abeb-6a4b1b73e300",
+  "command": "python3 -m unittest tests/test_ingest_analysis.py",
+  "started_at": "2026-11-01T15:40:05.249Z",
+  "observed_at": "2026-11-01T15:40:05.395Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "",
+  "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "8e1b365fa8f5e35ded031ea5819d68ff52fd80e9af969bfd141b54a6e566286e",
+  "before_hash": "8e1b365fa8f5e35ded031ea5819d68ff52fd80e9af969bfd141b54a6e566286e",
+  "config_hash": "b8a640cfc675da0c67fa7d654434dab835593a283d50e1eb15115be3663477ec",
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "52ec38c1b6833a8122caee66225fd2dfeb856aabd230be4d0abb18406883ea66"
+}

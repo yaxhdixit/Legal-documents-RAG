@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  cgl-legal-rag:
+    build: .
+    container_name: cgl_contract_intelligence
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

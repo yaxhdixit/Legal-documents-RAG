@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confrere Global Legale (CGL) — Contract Risk & Explainer SLM</title>
+    <style>
+        :root {
+            --cgl-navy: #0A192F;
+            --cgl-navy-light: #172A45;
+            --cgl-navy-border: #233554;
+            --cgl-gold: #D97706;
+            --cgl-gold-hover: #B45309;
+            --cgl-gold-light: #FEF3C7;
+            --cgl-bg: #F8FAFC;
+            --cgl-card-bg: #FFFFFF;
+            --cgl-text-dark: #0F172A;
+            --cgl-text-muted: #64748B;
+            --risk-high: #DC2626;
+            --risk-med: #D97706;
+            --risk-low: #65A30D; /* Crisp, visible yellowish-green */
+            --risk-review: #7C3AED;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--cgl-bg);
+            color: var(--cgl-text-dark);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: var(--cgl-navy);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--cgl-gold);
+            flex-shrink: 0;
+        }
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--cgl-navy);
+            letter-spacing: -0.5px;
+        }
+        .brand-text h1 {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .brand-text p {
+            font-size: 11px;
+            color: #94A3B8;
+            letter-spacing: 0.3px;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #CBD5E1;
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { background-color: var(--cgl-navy-light); color: #FFFFFF; }
+        .nav-btn.active {
+            background-color: var(--cgl-navy-light);
+            border-color: var(--cgl-gold);
+            color: #F8FAFC;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-gold {
+            background-color: var(--cgl-gold);
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-gold:hover { background-color: var(--cgl-gold-hover); }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #475569;
+            color: #FFFFFF;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+        /* Report Button Group & Dropdown Menu */
+        .report-btn-group {
+            position: relative;
+            display: inline-flex;
+            align-items: stretch;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .report-main-btn {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            padding: 8px 14px;
+            white-space: nowrap;
+        }
+        .report-caret-btn {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            padding: 8px 10px;
+            font-size: 11px;
+            background: #B45309 !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .report-caret-btn:hover {
+            background: #92400E !important;
+        }
+        .report-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            width: 250px;
+            background: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.18), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 6px 0;
+            overflow: hidden;
+            text-align: left;
+        }
+        .report-dropdown-menu.open {
+            display: block;
+            animation: fadeIn 0.15s ease-out;
+        }
+        .report-menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            text-decoration: none;
+        }
+        .report-menu-item:hover {
+            background-color: #F8FAFC;
+        }
+        .report-menu-icon {
+            font-size: 16px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+        .report-menu-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .report-menu-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cgl-navy);
+            line-height: 1.2;
+        }
+        .report-menu-sub {
+            font-size: 11px;
+            color: #64748B;
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+        .report-menu-divider {
+            height: 1px;
+            background-color: #E2E8F0;
+            margin: 4px 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Workspace Container */
+        main {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            background-color: #E2E8F0;
+        }
+
+        /* Left Panel: Original Contract Viewer & Outline */
+        .left-panel {
+            flex: 1.1;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 320px;
+        }
+        .viewer-toolbar {
+            padding: 10px 16px;
+            background-color: #F8FAFC;
+            border-bottom: 1px solid #E2E8F0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .btn-toggle-outline {
+            background: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            border-radius: 4px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--cgl-navy);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+        .btn-toggle-outline:hover {
+            border-color: var(--cgl-gold);
+            background-color: #FEF3C7;
+            color: #78350F;
+        }
+        .doc-title {
+            font-weight: 700;
+            color: var(--cgl-navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 340px;
+        }
+        .search-box {
+            padding: 5px 10px;
+            border: 1px solid #CBD5E1;
+            border-radius: 4px;
+            font-size: 12px;
+            width: 170px;
+        }
+
+        /* Outline & Viewer Split Body */
+        .viewer-split-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        .doc-outline-sidebar {
+            width: 240px;
+            min-width: 220px;
+            max-width: 320px;
+            background-color: #F8FAFC;
+            border-right: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: width 0.2s ease, opacity 0.2s ease;
+            flex-shrink: 0;
+        }
+        .doc-outline-sidebar.collapsed {
+            width: 0;
+            min-width: 0;
+            border-right: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .outline-header {
+            padding: 10px 14px;
+            background-color: #EDF2F7;
+            border-bottom: 1px solid #CBD5E1;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cgl-navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .outline-count-badge {
+            background-color: var(--cgl-gold);
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 10px;
+        }
+        .outline-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+        .outline-item {
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #334155;
+            cursor: pointer;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            line-height: 1.35;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+        }
+        .outline-item:hover {
+            background-color: #E2E8F0;
+            color: var(--cgl-navy);
+            border-color: #CBD5E1;
+        }
+        .outline-item.active {
+            background-color: #FEF3C7;
+            color: #78350F;
+            font-weight: 600;
+            border-color: var(--cgl-gold);
+        }
+        .outline-item .sec-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 6px;
+        }
+        .outline-item .sec-page {
+            font-size: 10px;
+            color: #64748B;
+            background: rgba(0,0,0,0.06);
+            padding: 1px 5px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .doc-content-area {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            white-space: pre-wrap;
+        }
+        .highlight-clause {
+            background-color: #FEF08A;
+            border-bottom: 2px solid #CA8A04;
+            padding: 2px 2px;
+            border-radius: 2px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .highlight-clause.active {
+            background-color: #FDE047;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.4);
+        }
+        @keyframes pulseGold {
+            0% { background-color: #FEF08A; box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
+            50% { background-color: #FDE047; box-shadow: 0 0 0 8px rgba(217, 119, 6, 0.4); }
+            100% { background-color: #FEF08A; box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+        }
+        .pulse-highlight {
+            animation: pulseGold 1.4s ease-in-out 3;
+            font-weight: 600;
+        }
+
+        /* Panel Resizer (Draggable Splitter Handle) */
+        .panel-resizer {
+            width: 8px;
+            background-color: #E2E8F0;
+            cursor: col-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 20;
+            user-select: none;
+            flex-shrink: 0;
+            transition: background-color 0.15s ease;
+        }
+        .panel-resizer:hover, .panel-resizer.active-dragging {
+            background-color: var(--cgl-gold);
+        }
+        .resizer-handle {
+            width: 2px;
+            height: 36px;
+            background-color: #94A3B8;
+            border-radius: 1px;
+            pointer-events: none;
+            transition: background-color 0.15s;
+        }
+        .panel-resizer:hover .resizer-handle, .panel-resizer.active-dragging .resizer-handle {
+            background-color: #FFFFFF;
+        }
+
+        /* Right Panel: Intelligence Explorer */
+        .right-panel {
+            flex: 0.9;
+            background-color: #F8FAFC;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 320px;
+        }
+        .explorer-tabs {
+            display: flex;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 0 8px;
+            overflow-x: auto;
+        }
+        .tab-item {
+            padding: 12px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cgl-text-muted);
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .tab-item:hover { color: var(--cgl-navy); }
+        .tab-item.active {
+            color: var(--cgl-navy);
+            border-bottom-color: var(--cgl-gold);
+        }
+        .explorer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        /* Overview Tab Components */
+        .overview-meta-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--cgl-navy);
+        }
+        .overview-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cgl-navy);
+            margin-bottom: 12px;
+        }
+        .deal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .deal-cell {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .deal-cell .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--cgl-text-muted);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        .deal-cell .val {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cgl-navy);
+        }
+        .synthesis-box {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #334155;
+        }
+        .synthesis-header {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--cgl-navy);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Risk Cards */
+        .risk-stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .risk-stat-item {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .risk-stat-item .num { font-size: 20px; font-weight: 700; }
+        .risk-stat-item .lbl { font-size: 11px; color: var(--cgl-text-muted); font-weight: 600; text-transform: uppercase; }
+
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+        }
+        .card:hover { border-color: #CBD5E1; box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .card-title { font-size: 14px; font-weight: 700; color: var(--cgl-navy); }
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 12px;
+            color: #FFFFFF;
+        }
+        .badge.High { background-color: var(--risk-high); }
+        .badge.Medium { background-color: var(--risk-med); }
+        .badge.Low { background-color: var(--risk-low); color: #FFFFFF; } /* Crisp Yellow-Green */
+        .badge.RequiresReview { background-color: var(--risk-review); }
+
+        .quote-box {
+            background-color: #F8FAFC;
+            border-left: 3px solid #0284C7;
+            padding: 8px 12px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 8px 0;
+            color: #334155;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: background 0.2s;
+        }
+        .quote-box:hover {
+            background-color: #F1F5F9;
+            border-left-color: var(--cgl-gold);
+        }
+        .quote-click-hint {
+            font-size: 10px;
+            color: #0284C7;
+            font-weight: 600;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lawyer-box {
+            background-color: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #92400E;
+            line-height: 1.5;
+        }
+        .lawyer-box strong { color: #78350F; }
+        .lawyer-box ul { margin: 6px 0 0 16px; padding: 0; }
+        .lawyer-box li { margin-bottom: 4px; }
+
+        /* Category Summary Widget in Clauses Tab */
+        .category-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .cat-chip {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cat-chip:hover, .cat-chip.selected {
+            border-color: var(--cgl-gold);
+            background: #FEF3C7;
+        }
+        .cat-chip .cat-name { font-size: 12px; font-weight: 600; color: var(--cgl-navy); }
+        .cat-chip .cat-count {
+            font-size: 11px;
+            background: #E2E8F0;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        .cat-chip.selected .cat-count { background: #D97706; color: #FFFFFF; }
+
+        /* Conversational Panel */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .chat-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .chat-bubble.user {
+            align-self: flex-end;
+            background-color: var(--cgl-navy);
+            color: #FFFFFF;
+        }
+        .chat-bubble.assistant {
+            align-self: flex-start;
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            color: #1E293B;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .quick-queries-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--cgl-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .quick-queries {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 14px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .quick-chip {
+            background: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1E293B;
+            transition: all 0.15s ease-in-out;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.45;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            text-align: left;
+            width: 100%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+        .quick-chip:hover {
+            background: #F8FAFC;
+            border-color: var(--cgl-gold);
+            color: var(--cgl-navy);
+            transform: translateX(2px);
+            box-shadow: 0 2px 4px rgba(217,119,6,0.12);
+        }
+        .chat-citation-banner {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #FEF3C7;
+            border: 1px solid #FDE68A;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #92400E;
+            cursor: pointer;
+            line-height: 1.45;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .chat-citation-banner:hover {
+            background-color: #FDE047;
+            border-color: var(--cgl-gold);
+            color: #78350F;
+            box-shadow: 0 1px 3px rgba(217, 119, 6, 0.2);
+        }
+        .chat-input-bar {
+            display: flex;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid #E2E8F0;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 25, 47, 0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        .modal.open { display: flex; }
+        .modal-body {
+            background: #FFFFFF;
+            width: 500px;
+            padding: 26px;
+            border-radius: 10px;
+            border: 2px solid var(--cgl-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <div class="brand-logo">CGL</div>
+            <div class="brand-text">
+                <h1>Confrere Global Legale</h1>
+                <p>Specialized Commercial Contract Intelligence & Risk SLM</p>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchNav('workspace')">Workspace</button>
+            <button class="nav-btn" onclick="switchNav('benchmark')">Model Evaluation</button>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn-outline" onclick="openUploadModal()">Upload Contract</button>
+            <div class="report-btn-group" id="report-btn-group">
+                <button class="btn-gold report-main-btn" onclick="downloadReport('pdf')" title="Generate and Download PDF Report">
+                    <span>📥 Download Report</span>
+                </button>
+                <button class="btn-gold report-caret-btn" onclick="toggleReportMenu(event)" title="Report Download Options">
+                    ▾
+                </button>
+                <div class="report-dropdown-menu" id="report-dropdown">
+                    <div class="report-menu-item" onclick="downloadReport('pdf')">
+                        <span class="report-menu-icon">📄</span>
+                        <div class="report-menu-content">
+                            <div class="report-menu-title">Download as PDF</div>
+                            <div class="report-menu-sub">Opens browser PDF Save / Print dialog</div>
+                        </div>
+                    </div>
+                    <div class="report-menu-item" onclick="downloadReport('json')">
+                        <span class="report-menu-icon">📊</span>
+                        <div class="report-menu-content">
+                            <div class="report-menu-title">Download Audit JSON</div>
+                            <div class="report-menu-sub">Raw structured risk findings & clauses</div>
+                        </div>
+                    </div>
+                    <div class="report-menu-divider"></div>
+                    <div class="report-menu-item" onclick="downloadReport('html')">
+                        <span class="report-menu-icon">🌐</span>
+                        <div class="report-menu-content">
+                            <div class="report-menu-title">View HTML Report</div>
+                            <div class="report-menu-sub">Open interactive executive report in new tab</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="workspace-view">
+        <!-- Left Panel: Original Contract Viewer & Outline -->
+        <section class="left-panel" id="left-panel">
+            <div class="viewer-toolbar">
+                <div style="display: flex; align-items: center; gap: 10px; overflow: hidden;">
+                    <button class="btn-toggle-outline" id="toggle-outline-btn" onclick="toggleOutlineSidebar()" title="Toggle Document Sections Outline">
+                        <span>📑</span> Sections
+                    </button>
+                    <div class="doc-title">
+                        <span id="active-filename">Loading Contract...</span>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+                    <input type="text" class="search-box" id="doc-search" placeholder="Search in contract..." onkeyup="searchInDoc(this.value)">
+                    <span style="font-size: 12px; color: var(--cgl-text-muted);" id="page-indicator">Pages: 1</span>
+                </div>
+            </div>
+
+            <div class="viewer-split-container">
+                <!-- Document Outline Sidebar (Headers & Sub-headers) -->
+                <aside class="doc-outline-sidebar" id="doc-outline-sidebar">
+                    <div class="outline-header">
+                        <span>Sections & Headers</span>
+                        <span class="outline-count-badge" id="outline-count">0</span>
+                    </div>
+                    <div class="outline-list" id="outline-list">
+                        <div style="font-size: 11px; color: #94A3B8; padding: 12px 8px; text-align: center;">Loading outline...</div>
+                    </div>
+                </aside>
+
+                <!-- Document Content Area -->
+                <div class="doc-content-area" id="contract-viewer">Loading contract preview...</div>
+            </div>
+        </section>
+
+        <!-- Slidable Separator Line (Draggable Splitter Handle) -->
+        <div class="panel-resizer" id="panel-resizer" title="Drag to adjust split view width">
+            <div class="resizer-handle"></div>
+        </div>
+
+        <!-- Right Panel: Intelligence Explorer -->
+        <section class="right-panel" id="right-panel">
+            <div class="explorer-tabs">
+                <div class="tab-item active" onclick="switchTab('overview', this)">Overview & Context</div>
+                <div class="tab-item" onclick="switchTab('risks', this)">Risk Analysis</div>
+                <div class="tab-item" onclick="switchTab('clauses', this)">Identified Clauses (CUAD)</div>
+                <div class="tab-item" onclick="switchTab('chat', this)">Conversational Explainer</div>
+            </div>
+
+            <!-- TAB 1: Document Overview & Context -->
+            <div class="explorer-content" id="tab-overview">
+                <div class="overview-meta-card">
+                    <div class="overview-title" id="ov-title">Contract Summary</div>
+                    <div class="deal-grid">
+                        <div class="deal-cell">
+                            <div class="label">Term Duration</div>
+                            <div class="val" id="ov-term">—</div>
+                        </div>
+                        <div class="deal-cell">
+                            <div class="label">Termination Notice</div>
+                            <div class="val" id="ov-notice">—</div>
+                        </div>
+                        <div class="deal-cell">
+                            <div class="label">Liability Ceiling</div>
+                            <div class="val" id="ov-cap">—</div>
+                        </div>
+                        <div class="deal-cell">
+                            <div class="label">Governing Jurisdiction</div>
+                            <div class="val" id="ov-law">—</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="synthesis-box">
+                    <div class="synthesis-header">Executive Contract Synthesis</div>
+                    <p id="ov-synthesis">
+                        Reviewing contract structure, key party commitments, and operational provisions...
+                    </p>
+                </div>
+
+                <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px;">
+                    <div class="synthesis-header">Contract Risk Posture</div>
+                    <div class="risk-stats-bar" style="margin-bottom: 0;">
+                        <div class="risk-stat-item"><div class="num" style="color:var(--risk-high);" id="ov-high">0</div><div class="lbl">High Risks</div></div>
+                        <div class="risk-stat-item"><div class="num" style="color:var(--risk-med);" id="ov-med">0</div><div class="lbl">Medium</div></div>
+                        <div class="risk-stat-item"><div class="num" style="color:var(--risk-low);" id="ov-low">0</div><div class="lbl">Low Risks</div></div>
+                        <div class="risk-stat-item"><div class="num" style="color:var(--risk-review);" id="ov-rev">0</div><div class="lbl">Requires Review</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Risk Analysis -->
+            <div class="explorer-content" id="tab-risks" style="display: none;">
+                <div class="risk-stats-bar">
+                    <div class="risk-stat-item"><div class="num" style="color:var(--risk-high);" id="stat-high">0</div><div class="lbl">High</div></div>
+                    <div class="risk-stat-item"><div class="num" style="color:var(--risk-med);" id="stat-med">0</div><div class="lbl">Medium</div></div>
+                    <div class="risk-stat-item"><div class="num" style="color:var(--risk-low);" id="stat-low">0</div><div class="lbl">Low</div></div>
+                    <div class="risk-stat-item"><div class="num" style="color:var(--risk-review);" id="stat-rev">0</div><div class="lbl">Review</div></div>
+                </div>
+                <div id="missing-provisions-alert"></div>
+                <div id="risk-findings-list">Loading findings...</div>
+            </div>
+
+            <!-- TAB 3: Identified Clauses -->
+            <div class="explorer-content" id="tab-clauses" style="display: none;">
+                <div style="margin-bottom: 10px; font-size: 12px; color: var(--cgl-text-muted);">
+                    Category breakdown across 14 standardized CUAD commercial categories. Click any category to filter:
+                </div>
+                <div class="category-summary-grid" id="category-summary-grid"></div>
+                <div id="clauses-list">Loading clauses...</div>
+            </div>
+
+            <!-- TAB 4: Conversational Explainer -->
+            <div class="explorer-content" id="tab-chat" style="display: none; padding-bottom: 10px;">
+                <div class="chat-container">
+                    <div class="quick-queries-header">Suggested Questions for This Document:</div>
+                    <div class="quick-queries" id="dynamic-quick-queries">
+                        <button type="button" class="quick-chip" onclick="askQuick('What are the biggest risks in this agreement?')">What are the biggest risks in this agreement?</button>
+                        <button type="button" class="quick-chip" onclick="askQuick('Can the other party terminate this contract without notice?')">Can the other party terminate this contract without notice?</button>
+                        <button type="button" class="quick-chip" onclick="askQuick('Is there a limitation on liability or monetary cap?')">Is there a limitation on liability or monetary cap?</button>
+                        <button type="button" class="quick-chip" onclick="askQuick('Explain the indemnification clause in simple English.')">Explain the indemnification clause in simple English.</button>
+                    </div>
+                    <div class="chat-history" id="chat-history">
+                        <div class="chat-bubble assistant">
+                            Welcome to the <strong>Confrere Global Legale (CGL)</strong> Contract Intelligence Assistant.
+                            Ask any question about the active contract, and I will answer grounded strictly in verified contract clauses with exact citations.
+                        </div>
+                    </div>
+                    <div class="chat-input-bar">
+                        <input type="text" class="chat-input" id="chat-input" placeholder="Ask a question about this contract..." onkeydown="if(event.key==='Enter') sendChat()">
+                        <button class="btn-gold" onclick="sendChat()">Ask</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Benchmark View -->
+    <main id="benchmark-view" style="display: none; background: #FFFFFF; padding: 40px; overflow-y: auto;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="color: var(--cgl-navy); margin-bottom: 6px;">SLM Comparative Benchmark Suite</h2>
+            <p style="color: var(--cgl-text-muted); font-size: 14px; margin-bottom: 24px;">
+                Quantitative evaluation comparing Pretrained Baseline (Qwen2.5-1.5B) + Retrieval vs. CGL Fine-Tuned SLM (LoRA) + Retrieval under identical test contracts.
+            </p>
+            <div id="benchmark-results-container">Loading benchmark data...</div>
+        </div>
+    </main>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="upload-modal">
+        <div class="modal-body">
+            <h3 style="color: var(--cgl-navy); margin-bottom: 12px;">Upload Contract for Review</h3>
+            <p style="font-size: 13px; color: var(--cgl-text-muted); margin-bottom: 16px;">Supported formats: PDF, DOCX, TXT. Preserves layout and page coordinates.</p>
+            <input type="file" id="file-input" accept=".pdf,.docx,.doc,.txt" style="margin-bottom: 16px; font-size: 13px; width: 100%;">
+            <div id="upload-status" style="display: none; margin-bottom: 14px; font-size: 12px; color: var(--cgl-navy); font-weight: 600;">
+                <span class="pulse-highlight" style="display: inline-block; padding: 6px 10px; border-radius: 4px;">⏳ Parsing document, identifying clauses & analyzing risk...</span>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn-outline" id="upload-cancel-btn" style="color: #334155; border-color: #CBD5E1;" onclick="closeUploadModal()">Cancel</button>
+                <button class="btn-gold" id="upload-submit-btn" onclick="uploadContract()">Start Review</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDocId = "";
+        let contractData = null;
+        let activeSessionId = "session_" + Math.random().toString(36).substring(7);
+        let selectedCategoryFilter = null;
+
+        // Master registry for foolproof jump-to-clause text coordinates
+        const CLAUSE_REGISTRY = {};
+        const EXACT_DOC_NAMES = {};
+        let OUTLINE_ITEMS = [];
+
+        async function init() {
+            initSplitResizer();
+            try {
+                const res = await fetch("/api/contracts");
+                const docs = await res.json();
+                if (docs && docs.length > 0) {
+                    loadContract(docs[0].doc_id);
+                } else {
+                    document.getElementById("contract-viewer").innerText = "No contracts loaded. Click 'Upload Contract' to analyze an agreement.";
+                }
+            } catch (e) {
+                console.error("Init error", e);
+            }
+        }
+
+        async function loadContract(docId, overrideFilename) {
+            currentDocId = docId;
+            const res = await fetch(`/api/contracts/${docId}`);
+            contractData = await res.json();
+
+            // Extract document text with full fallback support
+            let fullText = contractData.document.full_text;
+            if (!fullText) {
+                if (contractData.document.pages && contractData.document.pages.length > 0) {
+                    fullText = contractData.document.pages.map(p => p.text).join("\n\n");
+                } else if (contractData.document.sections && contractData.document.sections.length > 0) {
+                    fullText = contractData.document.sections.map(s => (s.title && s.title !== "Preamble" ? s.title + "\n\n" : "") + s.content).join("\n\n");
+                }
+            }
+            contractData.document.full_text = fullText || "No text available for this document.";
+
+            // Determine exact uploaded filename (prefer user's actual original filename over any server tmp name)
+            let exactFilename = overrideFilename || EXACT_DOC_NAMES[docId] || sessionStorage.getItem("cgl_doc_name_" + docId);
+            if (!exactFilename) {
+                const servName = contractData.document.filename || "";
+                if (servName && !/^tmp[a-z0-9_]+\.pdf$/i.test(servName)) {
+                    exactFilename = servName;
+                } else {
+                    const firstHeading = (contractData.document.sections && contractData.document.sections.find(s => s.title && s.title !== "Preamble"))?.title;
+                    const preambleMatch = contractData.document.full_text.match(/^[^\n\r]{4,70}/);
+                    exactFilename = firstHeading || (preambleMatch ? preambleMatch[0].trim() : "Commercial Agreement.pdf");
+                    if (!exactFilename.toLowerCase().endsWith(".pdf") && !exactFilename.toLowerCase().endsWith(".docx") && !exactFilename.toLowerCase().endsWith(".txt")) {
+                        exactFilename += ".pdf";
+                    }
+                }
+            }
+
+            EXACT_DOC_NAMES[docId] = exactFilename;
+            contractData.document.filename = exactFilename;
+
+            // 1. Set Toolbar Document Header
+            document.getElementById("active-filename").innerText = exactFilename;
+            document.getElementById("active-filename").title = exactFilename;
+            document.getElementById("page-indicator").innerText = `Pages: ${contractData.document.num_pages || 1}`;
+            renderDocumentText(contractData.document.full_text);
+
+            // 2. Render Document Sections & Headings Outline
+            renderOutline(contractData.document.sections, contractData.document.full_text);
+
+            // 3. Populate registry for click-to-highlight
+            for (let k in CLAUSE_REGISTRY) delete CLAUSE_REGISTRY[k];
+            if (contractData.clauses) {
+                contractData.clauses.forEach(c => { CLAUSE_REGISTRY[c.clause_id] = { text: c.text, category: c.category }; });
+            }
+            if (contractData.risk_analysis && contractData.risk_analysis.findings) {
+                contractData.risk_analysis.findings.forEach(f => { CLAUSE_REGISTRY[f.finding_id] = { text: f.exact_text, category: f.clause_name }; });
+            }
+
+            // 4. Render Overview & other tabs
+            if (!contractData.overview || !contractData.overview.executive_summary) {
+                contractData.overview = synthesizeClientOverview(contractData.document, contractData.clauses);
+            }
+            contractData.overview.title = exactFilename.replace(/\.[^/.]+$/, "");
+            renderOverview(contractData.overview, contractData.risk_analysis);
+            renderRisks(contractData.risk_analysis);
+            renderClauses(contractData.clauses);
+            renderDynamicQuestions(contractData.overview);
+        }
+
+        function toggleOutlineSidebar() {
+            const sidebar = document.getElementById("doc-outline-sidebar");
+            if (sidebar) {
+                sidebar.classList.toggle("collapsed");
+            }
+        }
+
+        function renderOutline(sections, fullText) {
+            const listEl = document.getElementById("outline-list");
+            const countEl = document.getElementById("outline-count");
+            if (!listEl) return;
+
+            const noiseBlacklist = [
+                "india sme helpdesk", "india ip sme helpdesk", "confidential", "all rights reserved",
+                "table of contents", "page", "model services contract", "core terms", "crown copyright",
+                "standard form document", "provision of services", "draft"
+            ];
+
+            let outlineItems = [];
+
+            // Optimized heading regex patterns
+            const headingRegexes = [
+                /^(\d{1,2}\.?\s+[A-Z][A-Za-z0-9\s,\-–—\(\)\/]{2,70})[:\.]?$/,
+                /^(\d{1,2}\.\d{1,2}\.?\s+[A-Z][A-Za-z0-9\s,\-–—\(\)\/]{2,70})[:\.]?$/,
+                /^((?:ARTICLE|SECTION|CLAUSE|SCHEDULE|ANNEX|EXHIBIT|PART)\s+[0-9IVXLCDM\w]+[:\.\s\-–—]+[A-Za-z0-9\s,\-–—\(\)\/]{2,70})[:\.]?$/i,
+                /^(RECITALS|DEFINITIONS|OPERATIVE PROVISIONS|GENERAL PROVISIONS|CORE TERMS|SPECIAL TERMS)$/i
+            ];
+
+            // 1. If parsed document has high-quality sections from backend
+            if (sections && sections.length > 5) {
+                sections.forEach((sec) => {
+                    const cleanTitle = (sec.title || "").trim();
+                    const lowerT = cleanTitle.toLowerCase();
+                    if (cleanTitle.length > 3 && !noiseBlacklist.includes(lowerT)) {
+                        outlineItems.push({
+                            title: cleanTitle,
+                            page: sec.page_number || 1,
+                            char_start: sec.char_start || 0
+                        });
+                    }
+                });
+            }
+
+            // 2. High-precision client-side heading extractor (for older server sessions or sparse sections)
+            if (outlineItems.length <= 4 && fullText) {
+                outlineItems = [];
+                const lines = fullText.split("\n");
+                let charPos = 0;
+
+                lines.forEach((line) => {
+                    const trimmed = line.trim();
+                    const lineLen = line.length;
+                    if (trimmed.length >= 3 && trimmed.length <= 80) {
+                        const lowerT = trimmed.toLowerCase();
+                        if (!noiseBlacklist.includes(lowerT) &&
+                            !/^page\s+\d+/i.test(lowerT) &&
+                            !trimmed.endsWith(",") && !trimmed.endsWith(";")) {
+                            for (let regex of headingRegexes) {
+                                const m = trimmed.match(regex);
+                                if (m) {
+                                    const cleanT = m[1].trim().replace(/[:\.]+$/, "");
+                                    if (cleanT.length > 3 && !noiseBlacklist.includes(cleanT.toLowerCase())) {
+                                        const approxPage = Math.floor(charPos / 2600) + 1;
+                                        outlineItems.push({
+                                            title: cleanT,
+                                            page: approxPage,
+                                            char_start: charPos
+                                        });
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    charPos += lineLen + 1;
+                });
+            }
+
+            OUTLINE_ITEMS = outlineItems;
+            if (countEl) countEl.innerText = outlineItems.length;
+
+            if (outlineItems.length === 0) {
+                listEl.innerHTML = `<div style="font-size:11px; color:#94A3B8; padding: 12px 8px; text-align:center;">No sections detected in this document.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = outlineItems.map((item, idx) => `
+                <div class="outline-item" id="outline-item-${idx}" onclick="jumpToOutlineItem(${idx})" title="${escapeHtml(item.title)}">
+                    <span class="sec-title">${escapeHtml(item.title)}</span>
+                    <span class="sec-page">P.${item.page}</span>
+                </div>
+            `).join("");
+        }
+
+        function jumpToOutlineItem(index) {
+            const item = OUTLINE_ITEMS[index];
+            if (!item) return;
+
+            document.querySelectorAll(".outline-item").forEach(el => el.classList.remove("active"));
+            const activeEl = document.getElementById("outline-item-" + index);
+            if (activeEl) activeEl.classList.add("active");
+
+            const viewer = document.getElementById("contract-viewer");
+            const fullText = contractData && contractData.document && contractData.document.full_text;
+            if (!viewer || !fullText) return;
+
+            const charPos = item.char_start;
+            const lineEnd = fullText.indexOf("\n", charPos);
+            const matchLen = (lineEnd !== -1 && lineEnd > charPos && (lineEnd - charPos) < 100)
+                ? (lineEnd - charPos)
+                : Math.min(item.title.length, 60);
+
+            const before = fullText.substring(0, charPos);
+            const match = fullText.substring(charPos, charPos + matchLen);
+            const after = fullText.substring(charPos + matchLen);
+
+            viewer.innerHTML = `${escapeHtml(before)}<mark class="highlight-clause active pulse-highlight" id="active-hl">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+
+            const hlElement = document.getElementById("active-hl");
+            if (hlElement) {
+                hlElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            document.getElementById("page-indicator").innerText = `Page ${item.page} • Section: ${item.title.substring(0, 30)}`;
+        }
+
+        function synthesizeClientOverview(doc, clauses) {
+            const text = doc.full_text || "";
+            const lowerText = text.toLowerCase();
+            const clList = clauses || [];
+
+            // 1. Term Duration strictly derived from document
+            let term = "Not specified in agreement";
+            const termClause = clList.find(c => c.category === "Termination and Renewal");
+            const termScope = termClause ? termClause.text : text;
+            const termMatch = termScope.match(/(?:initial\s+term\s+of|term\s+of|period\s+of|for\s+a\s+period\s+of)\s+([A-Za-z0-9\(\)\s]{1,40}?(?:years?|months?|weeks?|days?))/i);
+            if (termMatch) {
+                term = termMatch[1].trim();
+            } else if (lowerText.includes("perpetual") || lowerText.includes("in perpetuity")) {
+                term = "Perpetual";
+            } else if (lowerText.includes("at-will") || lowerText.includes("at will")) {
+                term = "At-will / Indefinite";
+            } else if (termClause) {
+                term = "Ongoing / Subject to Termination";
+            }
+
+            // 2. Termination Notice strictly derived from document
+            let notice = "Not specified (Immediate / At-will)";
+            const noticeScope = termClause ? termClause.text : text;
+            const noticeMatch = noticeScope.match(/(\d+|[A-Za-z]+)\s*(?:\([^\)]+\)\s*)?(?:business\s+|calendar\s+)?(?:day|month|week)s?\s+(?:prior\s+)?written\s+notice/i) ||
+                                noticeScope.match(/upon\s+(\d+|[A-Za-z]+)\s*(?:\([^\)]+\)\s*)?(?:day|month)s?\s+notice/i) ||
+                                noticeScope.match(/notice\s+of\s+not\s+less\s+than\s+([A-Za-z0-9\(\)\s]{1,30}?(?:days?|months?))/i);
+            if (noticeMatch) {
+                notice = `${noticeMatch[1].trim()} written notice`;
+            } else if (noticeScope.toLowerCase().includes("without notice") || noticeScope.toLowerCase().includes("immediate")) {
+                notice = "Immediate (Without Notice)";
+            } else if (termClause) {
+                notice = "Written notice required (Duration unstated)";
+            }
+
+            // 3. Liability Cap strictly derived from document
+            let cap = "No liability cap found (Uncapped Risk)";
+            const capClause = clList.find(c => c.category === "Limitation of Liability");
+            const capScope = capClause ? capClause.text : text;
+            const moneyMatch = capScope.match(/(?:not\s+exceed|capped\s+at|limited\s+to|maximum\s+liability\s+of)\s*[:\s]*(\$\s*[\d,]+(?:\.\d+)?|\€\s*[\d,]+|£\s*[\d,]+|[\d,]+\s*(?:USD|EUR|GBP|INR))/i);
+            const feesMatch = capScope.match(/(?:not\s+exceed|capped\s+at|limited\s+to|maximum\s+of)\s*([A-Za-z0-9\(\)\s]{1,60}?(?:fees|amount|charges)\s+(?:paid|payable)[^.;,\n]*)/i);
+            const genMatch = capScope.match(/(?:total\s+aggregate\s+liability[^.;\n]+?shall\s+not\s+exceed\s+)([^.;\n]+)/i);
+
+            if (moneyMatch) {
+                cap = moneyMatch[1].trim();
+            } else if (feesMatch) {
+                cap = feesMatch[1].trim();
+            } else if (genMatch) {
+                cap = genMatch[1].trim();
+            } else if (capClause) {
+                cap = "Mutual liability capped (See clause text)";
+            }
+
+            // 4. Governing Jurisdiction strictly derived from document
+            let law = "Not specified in agreement";
+            const lawClause = clList.find(c => c.category === "Governing Law");
+            const lawScope = lawClause ? lawClause.text : text;
+            const lawMatch = lawScope.match(/(?:governing\s+law|jurisdiction)\s*[:\-]\s*(?:the\s+laws\s+of\s+)?(?:the\s+State\s+of\s+|State\s+of\s+)?([A-Za-z\s,–—]{2,50}?)(?:\.|\;|\n|$)/i) ||
+                             lawScope.match(/governed\s+by\s+(?:and\s+construed\s+in\s+accordance\s+with\s+)?(?:the\s+laws\s+of\s+)?(?:the\s+State\s+of\s+|State\s+of\s+)?([A-Za-z\s,–—]{2,50}?)(?:\.|\;|\n|without\s+regard|and\s+each\s+party)/i) ||
+                             lawScope.match(/laws\s+of\s+([A-Za-z\s,–—]{2,50}?)(?:\.|\;|\n|shall)/i);
+            if (lawMatch) {
+                law = lawMatch[1].trim().replace(/\s+and$/, "").replace(/,$/, "");
+            } else if (lawClause) {
+                law = lawClause.text.substring(0, 45).trim() + "...";
+            }
+
+            // 5. Tailored questions dynamically based on detected provisions
+            const questions = [
+                "What are the biggest commercial and legal risks in this agreement?"
+            ];
+            if (termClause) {
+                questions.push(`Can the other party terminate this contract without notice under ${notice}?`);
+            } else {
+                questions.push("Does this contract contain an express term or termination provision?");
+            }
+            if (capClause) {
+                questions.push(`How does the liability ceiling (${cap.substring(0, 36)}) protect our business?`);
+            } else {
+                questions.push("Are there any provisions limiting our company's financial liability?");
+            }
+            if (clList.some(c => c.category === "Intellectual Property")) {
+                questions.push("Who owns intellectual property and software deliverables created under this contract?");
+            }
+            if (clList.some(c => c.category === "Indemnification")) {
+                questions.push("Explain the indemnification clause and defense obligations in simple English.");
+            }
+            if (clList.some(c => c.category === "Confidentiality")) {
+                questions.push("What confidentiality and non-disclosure obligations apply?");
+            }
+
+            const titleClean = (doc.filename || "Contract").replace(/\.[^/.]+$/, "");
+            const summary = `This commercial agreement (${titleClean}) has been analyzed across ${clList.length} identified clause provisions. Term duration is evaluated as ${term}, with termination notice requirements established as ${notice}. Financial liability posture is identified as ${cap}, governed under ${law}. Legal counsel should review the flagged high and medium risk provisions before execution.`;
+
+            return {
+                title: titleClean,
+                term_duration: term,
+                termination_notice: notice,
+                liability_cap: cap,
+                governing_law: law,
+                executive_summary: summary,
+                suggested_questions: questions
+            };
+        }
+
+        function renderDocumentText(text) {
+            const container = document.getElementById("contract-viewer");
+            container.innerText = text || "No text available for this document.";
+        }
+
+        function renderOverview(overview, riskAnalysis) {
+            if (!overview) return;
+            const docName = (contractData && contractData.document && contractData.document.filename) ? contractData.document.filename : 'Contract';
+            const cleanTitle = docName.replace(/\.[^/.]+$/, "");
+
+            document.getElementById("ov-title").innerText = cleanTitle;
+            document.getElementById("ov-term").innerText = overview.term_duration || 'Not specified in agreement';
+            document.getElementById("ov-notice").innerText = overview.termination_notice || 'Not specified';
+            document.getElementById("ov-cap").innerText = overview.liability_cap || 'No liability cap found';
+            document.getElementById("ov-law").innerText = overview.governing_law || 'Not specified in agreement';
+
+            let synthesisText = overview.executive_summary || `This commercial agreement (${cleanTitle}) has been reviewed across all identified clause provisions by CGL contract intelligence.`;
+            synthesisText = synthesisText.replace(/tmp[a-z0-9_]+(?:\.pdf)?/gi, cleanTitle);
+            document.getElementById("ov-synthesis").innerText = synthesisText;
+
+            if (riskAnalysis) {
+                document.getElementById("ov-high").innerText = riskAnalysis.high_priority_count;
+                document.getElementById("ov-med").innerText = riskAnalysis.medium_priority_count;
+                document.getElementById("ov-low").innerText = riskAnalysis.low_priority_count;
+                document.getElementById("ov-rev").innerText = riskAnalysis.requires_review_count;
+            }
+        }
+
+        function renderRisks(riskAnalysis) {
+            document.getElementById("stat-high").innerText = riskAnalysis.high_priority_count;
+            document.getElementById("stat-med").innerText = riskAnalysis.medium_priority_count;
+            document.getElementById("stat-low").innerText = riskAnalysis.low_priority_count;
+            document.getElementById("stat-rev").innerText = riskAnalysis.requires_review_count;
+
+            const missingBox = document.getElementById("missing-provisions-alert");
+            if (riskAnalysis.missing_provisions && riskAnalysis.missing_provisions.length > 0) {
+                missingBox.innerHTML = `
+                    <div style="background-color: #FEF2F2; border: 1px solid #FECACA; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; font-size: 13px; color: #991B1B;">
+                        <strong>Missing Essential Provisions:</strong> ${riskAnalysis.missing_provisions.join(", ")}.
+                    </div>`;
+            } else {
+                missingBox.innerHTML = "";
+            }
+
+            const list = document.getElementById("risk-findings-list");
+            list.innerHTML = riskAnalysis.findings.map(f => {
+                const lawyerPointsHtml = f.lawyer_review_questions && f.lawyer_review_questions.length > 0
+                    ? f.lawyer_review_questions.map(q => `<li>${escapeHtml(q)}</li>`).join("")
+                    : `<li>Confirm commercial terms match operational expectations.</li>`;
+
+                return `
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">${f.clause_name}</span>
+                        <span class="badge ${f.risk_priority.replace(' ', '')}">${f.risk_priority} Priority</span>
+                    </div>
+                    <div style="font-size: 12px; color: #475569; margin-bottom: 6px;">
+                        <strong>Concern:</strong> ${escapeHtml(f.concern_explanation)}
+                    </div>
+                    <div class="quote-box" onclick="jumpToClause('${f.finding_id}')">
+                        "${escapeHtml(f.exact_text.substring(0, 160))}..."
+                        <div class="quote-click-hint">📍 Click to jump & highlight in document</div>
+                    </div>
+                    <div style="font-size: 11px; color: #64748B; margin-top: 4px;">
+                        Affects: <strong>${escapeHtml(f.affected_party)}</strong> | Page: ${f.page_number || 1}
+                    </div>
+                    <div class="lawyer-box">
+                        <strong>Attorney Review Point & Negotiation Strategy:</strong>
+                        <ul>${lawyerPointsHtml}</ul>
+                    </div>
+                </div>
+                `;
+            }).join("");
+        }
+
+        function renderClauses(clauses) {
+            // Category summary stats
+            const catMap = {};
+            clauses.forEach(c => {
+                catMap[c.category] = (catMap[c.category] || 0) + 1;
+            });
+
+            const summaryGrid = document.getElementById("category-summary-grid");
+            let summaryHtml = `
+                <div class="cat-chip ${selectedCategoryFilter === null ? 'selected' : ''}" onclick="filterClauses(null)">
+                    <span class="cat-name">All Categories</span>
+                    <span class="cat-count">${clauses.length}</span>
+                </div>
+            `;
+            for (let cat in catMap) {
+                const isSel = selectedCategoryFilter === cat ? 'selected' : '';
+                summaryHtml += `
+                    <div class="cat-chip ${isSel}" onclick="filterClauses('${escapeHtml(cat)}')">
+                        <span class="cat-name">${escapeHtml(cat)}</span>
+                        <span class="cat-count">${catMap[cat]}</span>
+                    </div>
+                `;
+            }
+            summaryGrid.innerHTML = summaryHtml;
+
+            // Filter clauses
+            const filtered = selectedCategoryFilter 
+                ? clauses.filter(c => c.category === selectedCategoryFilter)
+                : clauses;
+
+            const list = document.getElementById("clauses-list");
+            list.innerHTML = filtered.map(c => `
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">${escapeHtml(c.category)}</span>
+                        <span style="font-size: 11px; color: #0284C7; font-weight: 600;">Confidence: ${Math.round(c.confidence * 100)}%</span>
+                    </div>
+                    <div class="quote-box" onclick="jumpToClause('${c.clause_id}')">
+                        "${escapeHtml(c.text)}"
+                        <div class="quote-click-hint">📍 Click to jump & highlight in document</div>
+                    </div>
+                    <div style="font-size: 11px; color: #64748B;">
+                        Page ${c.page_number || 1} • ${escapeHtml(c.section_title || 'General Provisions')}
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function filterClauses(category) {
+            selectedCategoryFilter = category;
+            renderClauses(contractData.clauses);
+        }
+
+        function renderDynamicQuestions(overview) {
+            const container = document.getElementById("dynamic-quick-queries");
+            if (!container) return;
+            if (overview && overview.suggested_questions && overview.suggested_questions.length > 0) {
+                let chipsHtml = "";
+                overview.suggested_questions.forEach(q => {
+                    chipsHtml += `<button type="button" class="quick-chip" onclick="askQuick('${encodeURIComponent(q)}')">${escapeHtml(q)}</button>`;
+                });
+                container.innerHTML = chipsHtml;
+            } else {
+                container.innerHTML = `
+                    <button type="button" class="quick-chip" onclick="askQuick('What are the biggest risks in this agreement?')">What are the biggest risks in this agreement?</button>
+                    <button type="button" class="quick-chip" onclick="askQuick('Can the other party terminate this contract without notice?')">Can the other party terminate this contract without notice?</button>
+                    <button type="button" class="quick-chip" onclick="askQuick('Is there a limitation on liability or monetary cap?')">Is there a limitation on liability or monetary cap?</button>
+                    <button type="button" class="quick-chip" onclick="askQuick('Explain the indemnification clause in simple English.')">Explain the indemnification clause in simple English.</button>
+                `;
+            }
+        }
+
+        function highlightAndScrollToTargetText(rawTarget) {
+            if (!rawTarget) return false;
+            let target = rawTarget.trim();
+            if (target.startsWith('"') && target.endsWith('"')) target = target.slice(1, -1).trim();
+            if (!target) return false;
+
+            const viewer = document.getElementById("contract-viewer");
+            const fullText = contractData && contractData.document && contractData.document.full_text;
+            if (!fullText || !viewer) return false;
+
+            let matchIndex = fullText.indexOf(target);
+            let matchLength = target.length;
+
+            // Pass 2: Whitespace-normalized fallback
+            if (matchIndex === -1) {
+                const normDoc = fullText.replace(/\s+/g, " ");
+                const normTarget = target.replace(/\s+/g, " ");
+                const normIndex = normDoc.indexOf(normTarget);
+                if (normIndex !== -1) {
+                    let docChar = 0;
+                    let normChar = 0;
+                    while (normChar < normIndex && docChar < fullText.length) {
+                        if (/\s/.test(fullText[docChar])) {
+                            while (docChar < fullText.length && /\s/.test(fullText[docChar])) docChar++;
+                            normChar++;
+                        } else {
+                            docChar++;
+                            normChar++;
+                        }
+                    }
+                    matchIndex = docChar;
+                    matchLength = target.length;
+                }
+            }
+
+            // Pass 3: Anchor prefix snippet search (first 35 characters)
+            if (matchIndex === -1) {
+                const anchor = target.replace(/^[^\w]+/, "").substring(0, 35);
+                if (anchor.length >= 8) {
+                    matchIndex = fullText.indexOf(anchor);
+                    if (matchIndex !== -1) {
+                        matchLength = Math.min(target.length, fullText.length - matchIndex);
+                    }
+                }
+            }
+
+            // Pass 4: Case-insensitive fallback
+            if (matchIndex === -1) {
+                const lowerDoc = fullText.toLowerCase();
+                const lowerTarget = target.toLowerCase();
+                matchIndex = lowerDoc.indexOf(lowerTarget);
+                if (matchIndex !== -1) {
+                    matchLength = target.length;
+                }
+            }
+
+            if (matchIndex >= 0) {
+                const before = fullText.substring(0, matchIndex);
+                const match = fullText.substring(matchIndex, matchIndex + matchLength);
+                const after = fullText.substring(matchIndex + matchLength);
+
+                viewer.innerHTML = `${escapeHtml(before)}<mark class="highlight-clause active pulse-highlight" id="active-hl">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+
+                const hlElement = document.getElementById("active-hl");
+                if (hlElement) {
+                    hlElement.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+                return true;
+            }
+            return false;
+        }
+
+        // Bulletproof Jump-to-Clause & Highlight Engine
+        function jumpToClause(entityId) {
+            const item = CLAUSE_REGISTRY[entityId];
+            if (!item || !item.text) return;
+            highlightAndScrollToTargetText(item.text);
+        }
+
+        function initSplitResizer() {
+            const resizer = document.getElementById("panel-resizer");
+            const leftPanel = document.getElementById("left-panel");
+            const rightPanel = document.getElementById("right-panel");
+            const container = document.getElementById("workspace-view");
+            if (!resizer || !leftPanel || !rightPanel || !container) return;
+
+            let isDragging = false;
+
+            resizer.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                resizer.classList.add("active-dragging");
+                document.body.style.cursor = "col-resize";
+                document.body.style.userSelect = "none";
+                e.preventDefault();
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                const containerRect = container.getBoundingClientRect();
+                const mouseX = e.clientX - containerRect.left;
+                const totalWidth = containerRect.width;
+
+                const minWidth = totalWidth * 0.22;
+                const maxWidth = totalWidth * 0.78;
+                const clamped = Math.max(minWidth, Math.min(maxWidth, mouseX));
+
+                leftPanel.style.flex = "none";
+                leftPanel.style.width = `${clamped}px`;
+                rightPanel.style.flex = "1";
+            });
+
+            document.addEventListener("mouseup", () => {
+                if (isDragging) {
+                    isDragging = false;
+                    resizer.classList.remove("active-dragging");
+                    document.body.style.cursor = "";
+                    document.body.style.userSelect = "";
+                }
+            });
+        }
+
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+        }
+
+        function switchTab(tab, el) {
+            document.querySelectorAll(".tab-item").forEach(t => t.classList.remove("active"));
+            el.classList.add("active");
+            document.getElementById("tab-overview").style.display = tab === "overview" ? "block" : "none";
+            document.getElementById("tab-risks").style.display = tab === "risks" ? "block" : "none";
+            document.getElementById("tab-clauses").style.display = tab === "clauses" ? "block" : "none";
+            document.getElementById("tab-chat").style.display = tab === "chat" ? "flex" : "none";
+        }
+
+        function switchNav(nav) {
+            document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+            if (nav === "workspace") {
+                document.getElementById("workspace-view").style.display = "flex";
+                document.getElementById("benchmark-view").style.display = "none";
+                event.target.classList.add("active");
+            } else {
+                document.getElementById("workspace-view").style.display = "none";
+                document.getElementById("benchmark-view").style.display = "block";
+                event.target.classList.add("active");
+                loadBenchmark();
+            }
+        }
+
+        async function sendChat() {
+            const input = document.getElementById("chat-input");
+            const query = input.value.trim();
+            if (!query) return;
+
+            input.value = "";
+            const history = document.getElementById("chat-history");
+            history.innerHTML += `<div class="chat-bubble user">${escapeHtml(query)}</div>`;
+            history.scrollTop = history.scrollHeight;
+
+            try {
+                const res = await fetch(`/api/contracts/${currentDocId}/chat`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: query, session_id: activeSessionId })
+                });
+                const data = await res.json();
+
+                let answerHtml = formatMarkdown(data.answer);
+
+                // Auto-scroll and highlight retrieved evidence chunk on left document viewer
+                if (data.citations && data.citations.length > 0) {
+                    const topCite = data.citations[0];
+                    if (topCite.quote_text) {
+                        highlightAndScrollToTargetText(topCite.quote_text);
+                        answerHtml += `
+                            <div class="chat-citation-banner" onclick="highlightAndScrollToTargetText('${encodeURIComponent(topCite.quote_text)}')">
+                                📍 <span><strong>Retrieved Clause (Page ${topCite.page_number || 1}):</strong> "${escapeHtml(topCite.quote_text.substring(0, 95))}..." <em>[Click to re-focus]</em></span>
+                            </div>`;
+                    }
+                }
+
+                history.innerHTML += `<div class="chat-bubble assistant">${answerHtml}</div>`;
+                history.scrollTop = history.scrollHeight;
+            } catch (e) {
+                history.innerHTML += `<div class="chat-bubble assistant" style="color:red;">Error processing inquiry.</div>`;
+            }
+        }
+
+        function askQuick(encodedQ) {
+            let q = encodedQ;
+            try {
+                if (encodedQ.includes('%')) {
+                    q = decodeURIComponent(encodedQ);
+                }
+            } catch (e) {
+                q = encodedQ;
+            }
+            const tabButtons = document.querySelectorAll(".tab-item");
+            if (tabButtons && tabButtons[3]) {
+                tabButtons[3].click();
+            }
+            const input = document.getElementById("chat-input");
+            if (input) {
+                input.value = q;
+            }
+            sendChat();
+        }
+
+        function formatMarkdown(md) {
+            return md.replace(/\n\n/g, "<br><br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        }
+
+        function toggleReportMenu(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const dropdown = document.getElementById("report-dropdown");
+            if (dropdown) {
+                dropdown.classList.toggle("open");
+            }
+        }
+
+        function closeReportMenu() {
+            const dropdown = document.getElementById("report-dropdown");
+            if (dropdown) dropdown.classList.remove("open");
+        }
+
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest("#report-btn-group")) {
+                closeReportMenu();
+            }
+        });
+
+        async function downloadReport(format = "pdf") {
+            closeReportMenu();
+            if (!currentDocId) {
+                alert("Please wait for a contract to load or upload a contract first.");
+                return;
+            }
+
+            if (format === "pdf") {
+                const reportUrl = `/api/contracts/${currentDocId}/report?auto_print=1`;
+                const printWin = window.open(reportUrl, "_blank");
+                if (printWin) {
+                    printWin.onload = function() {
+                        setTimeout(function() {
+                            try { printWin.print(); } catch(e) {}
+                        }, 500);
+                    };
+                }
+            } else if (format === "json") {
+                const jsonUrl = `/api/contracts/${currentDocId}/report/json`;
+                try {
+                    const res = await fetch(jsonUrl);
+                    if (res.ok) {
+                        const blob = await res.blob();
+                        const blobUrl = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = blobUrl;
+                        const safeName = (contractData?.document?.filename || currentDocId).replace(/[^a-zA-Z0-9_\-\.]/g, "_");
+                        a.download = `CGL_Audit_Report_${safeName}.json`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(blobUrl);
+                        return;
+                    }
+                } catch (e) {
+                    console.warn("Server JSON endpoint not ready, falling back to client-side export", e);
+                }
+                fallbackJsonDownload();
+            } else {
+                // Interactive HTML view
+                window.open(`/api/contracts/${currentDocId}/report`, "_blank");
+            }
+        }
+
+        function fallbackJsonDownload() {
+            if (!contractData) return;
+            const exportData = {
+                meta: {
+                    generated_at: new Date().toISOString(),
+                    organization: "Confrere Global Legale (CGL)",
+                    associated: "Confrere Global Legale Legal Operations",
+                    system: "CGL Contract Risk Intelligence SLM",
+                    doc_id: currentDocId
+                },
+                document: contractData.document,
+                clauses: contractData.clauses || [],
+                risk_analysis: contractData.risk_analysis || {},
+                overview: contractData.overview || {}
+            };
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            const safeName = (contractData?.document?.filename || currentDocId).replace(/[^a-zA-Z0-9_\-\.]/g, "_");
+            a.download = `CGL_Audit_Report_${safeName}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+        }
+
+        function resetApplicationState() {
+            // 1. Reset Chat Inputs & Conversation History in Conversational Explainer
+            const chatInput = document.getElementById("chat-input");
+            if (chatInput) chatInput.value = "";
+
+            const chatHistory = document.getElementById("chat-history");
+            if (chatHistory) {
+                chatHistory.innerHTML = `
+                    <div class="chat-bubble assistant">
+                        Welcome to the <strong>Confrere Global Legale (CGL)</strong> Contract Intelligence Assistant.
+                        Ask any question about the active contract, and I will answer grounded strictly in verified contract clauses with exact citations.
+                    </div>
+                `;
+            }
+
+            // 2. Generate a fresh session ID for conversation memory
+            activeSessionId = "session_" + Math.random().toString(36).substring(7);
+
+            // 3. Clear Document Search Input & active highlights
+            const docSearch = document.getElementById("doc-search");
+            if (docSearch) docSearch.value = "";
+
+            // 4. Reset Category Filter for Identified Clauses
+            selectedCategoryFilter = null;
+
+            // 5. Reset Active Tab back to "Overview & Context"
+            const tabs = document.querySelectorAll(".explorer-tabs .tab-item");
+            if (tabs && tabs[0]) {
+                switchTab("overview", tabs[0]);
+            }
+
+            // 6. Reset Top Navigation to "Workspace"
+            const navBtns = document.querySelectorAll(".nav-btn");
+            if (navBtns && navBtns[0]) {
+                navBtns.forEach(b => b.classList.remove("active"));
+                navBtns[0].classList.add("active");
+            }
+            const wsView = document.getElementById("workspace-view");
+            const bmView = document.getElementById("benchmark-view");
+            if (wsView) wsView.style.display = "flex";
+            if (bmView) bmView.style.display = "none";
+
+            // 7. Reset Document Outline Sidebar state
+            OUTLINE_ITEMS = [];
+            const outlineCount = document.getElementById("outline-count");
+            if (outlineCount) outlineCount.innerText = "0";
+            const outlineList = document.getElementById("outline-list");
+            if (outlineList) {
+                outlineList.innerHTML = `<div style="font-size: 11px; color: #94A3B8; padding: 12px 8px; text-align: center;">Loading outline...</div>`;
+            }
+
+            // 8. Scroll Document Viewer back to top
+            const viewer = document.getElementById("contract-viewer");
+            if (viewer) {
+                viewer.scrollTop = 0;
+                viewer.innerHTML = "Loading contract preview...";
+            }
+
+            // 9. Reset File Input
+            const fileInput = document.getElementById("file-input");
+            if (fileInput) fileInput.value = "";
+
+            // 10. Clear Clause Registry
+            for (let k in CLAUSE_REGISTRY) delete CLAUSE_REGISTRY[k];
+        }
+
+        function openUploadModal() { document.getElementById("upload-modal").classList.add("open"); }
+        function closeUploadModal() { document.getElementById("upload-modal").classList.remove("open"); }
+
+        async function uploadContract() {
+            const input = document.getElementById("file-input");
+            if (!input.files || input.files.length === 0) return alert("Please select a contract file (.pdf, .docx, or .txt).");
+            const file = input.files[0];
+            const originalName = file.name;
+            const fd = new FormData();
+            fd.append("file", file);
+
+            const submitBtn = document.getElementById("upload-submit-btn");
+            const cancelBtn = document.getElementById("upload-cancel-btn");
+            const statusDiv = document.getElementById("upload-status");
+
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.innerText = "Analyzing Contract..."; }
+            if (cancelBtn) { cancelBtn.disabled = true; }
+            if (statusDiv) { statusDiv.style.display = "block"; }
+
+            try {
+                const res = await fetch("/api/upload", { method: "POST", body: fd });
+                if (!res.ok) {
+                    const errData = await res.json().catch(() => ({}));
+                    throw new Error(errData.detail || `Upload failed with HTTP ${res.status}`);
+                }
+                const data = await res.json();
+                EXACT_DOC_NAMES[data.doc_id] = originalName;
+                try {
+                    sessionStorage.setItem("cgl_doc_name_" + data.doc_id, originalName);
+                } catch (e) {}
+
+                closeUploadModal();
+                resetApplicationState();
+                await loadContract(data.doc_id, originalName);
+            } catch (err) {
+                console.error("Upload error:", err);
+                alert("Upload failed: " + err.message);
+            } finally {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.innerText = "Start Review"; }
+                if (cancelBtn) { cancelBtn.disabled = false; }
+                if (statusDiv) { statusDiv.style.display = "none"; }
+            }
+        }
+
+        async function loadBenchmark() {
+            const container = document.getElementById("benchmark-results-container");
+            const res = await fetch("/api/benchmark");
+            const data = await res.json();
+            const b = data.baseline;
+            const s = data.finetuned_slm;
+
+            container.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px;">
+                    <thead>
+                        <tr style="background: #F1F5F9; border-bottom: 2px solid #CBD5E1; text-align: left;">
+                            <th style="padding: 12px;">Evaluation Metric</th>
+                            <th style="padding: 12px;">Pretrained Baseline + Retrieval</th>
+                            <th style="padding: 12px; color: #D97706;">CGL Fine-Tuned SLM + Retrieval</th>
+                            <th style="padding: 12px;">Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>Clause Extraction F1</strong></td><td>${(b.clause_extraction_f1 * 100).toFixed(1)}%</td><td style="font-weight:700; color:#0A192F;">${(s.clause_extraction_f1 * 100).toFixed(1)}%</td><td style="color:#16A34A; font-weight:700;">+${((s.clause_extraction_f1 - b.clause_extraction_f1)*100).toFixed(1)}%</td></tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>NLI Claim Verification</strong></td><td>${(b.nli_accuracy * 100).toFixed(1)}%</td><td style="font-weight:700; color:#0A192F;">${(s.nli_accuracy * 100).toFixed(1)}%</td><td style="color:#16A34A; font-weight:700;">+${((s.nli_accuracy - b.nli_accuracy)*100).toFixed(1)}%</td></tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>Risk Detection Precision</strong></td><td>${(b.risk_precision * 100).toFixed(1)}%</td><td style="font-weight:700; color:#0A192F;">${(s.risk_precision * 100).toFixed(1)}%</td><td style="color:#16A34A; font-weight:700;">+${((s.risk_precision - b.risk_precision)*100).toFixed(1)}%</td></tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>Evidence Faithfulness (1 - Hallucination)</strong></td><td>${(b.faithfulness_rate * 100).toFixed(1)}%</td><td style="font-weight:700; color:#0A192F;">${(s.faithfulness_rate * 100).toFixed(1)}%</td><td style="color:#16A34A; font-weight:700;">+${((s.faithfulness_rate - b.faithfulness_rate)*100).toFixed(1)}%</td></tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>ACORD Retrieval MRR</strong></td><td>${b.retrieval_mrr}</td><td style="font-weight:700; color:#0A192F;">${s.retrieval_mrr}</td><td>Optimized</td></tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;"><td style="padding: 10px;"><strong>Inference Latency (avg)</strong></td><td>${b.avg_latency_ms} ms</td><td style="font-weight:700; color:#0A192F;">${s.avg_latency_ms} ms</td><td style="color:#16A34A; font-weight:700;">Sub-second</td></tr>
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function searchInDoc(q) {
+            if (!q) return renderDocumentText(contractData.document.full_text);
+            const viewer = document.getElementById("contract-viewer");
+            const fullText = contractData.document.full_text;
+            const idx = fullText.toLowerCase().indexOf(q.toLowerCase());
+            if (idx >= 0) {
+                const before = fullText.substring(0, idx);
+                const match = fullText.substring(idx, idx + q.length);
+                const after = fullText.substring(idx + q.length);
+                viewer.innerHTML = `${escapeHtml(before)}<mark class="highlight-clause active pulse-highlight" id="active-hl">${escapeHtml(match)}</mark>${escapeHtml(after)}`;
+                const el = document.getElementById("active-hl");
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "task": "DATA-1",
+  "gate": "unit",
+  "kind": "command",
+  "attempt": "1544e2c1-18ae-4fec-85a4-4133a2bee831",
+  "command": "python3 -m unittest tests/test_data_pipeline.py",
+  "started_at": "2026-11-01T15:35:01.963Z",
+  "observed_at": "2026-11-01T15:35:02.130Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "",
+  "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.004s\n\nOK\n",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "50ca264cda5c02d43e9d17535e9eaa4f91011ba7a7475024067022daf5e0376d",
+  "before_hash": "50ca264cda5c02d43e9d17535e9eaa4f91011ba7a7475024067022daf5e0376d",
+  "config_hash": "2a39e3a613acfdb4685e8a00b658c7f6f47117ff166cbdaf5bc75466ae3bcfdf",
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "fd9e64e6447b1a5068c702a2131cee4b421b52f9807a465200163b84530e3038"
+}

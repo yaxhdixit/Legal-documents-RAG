@@ -1,0 +1,30 @@
+{
+  "task": "RAG-1",
+  "gate": "unit",
+  "kind": "command",
+  "attempt": "37fcb756-93a9-42c3-acf3-ef5e09c064bf",
+  "command": "python3 -m unittest tests/test_retrieval_conversation.py",
+  "started_at": "2026-11-01T15:44:29.534Z",
+  "observed_at": "2026-11-01T15:44:29.690Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "",
+  "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "d310be6c939e63167fdc7ecfbd5c35c6c3e16579412897bd2ebaff911b2873dd",
+  "before_hash": "d310be6c939e63167fdc7ecfbd5c35c6c3e16579412897bd2ebaff911b2873dd",
+  "config_hash": "22b44114f2f9d9bbc7d75fe7b8085a649886dae8a1ccfbca5190ad62f30c335a",
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "fd13cec8cdf8b51a193ff46d18acf7bdf4141379588fa4bdd719dba0878f9253"
+}

@@ -1,0 +1,786 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "Legal RAG",
+    "mode": "init",
+    "profile": "prototype",
+    "objective": "Specialized Small Language Model (SLM) powered legal contract intelligence platform for Confrere Global Legale (CGL) to analyze commercial agreements, identify clauses, detect risks with evidence grounding, provide conversational Q&A, and generate review reports",
+    "constraints": [],
+    "non_goals": [],
+    "trust_boundary": "local repository",
+    "created_at": "2026-11-01T15:19:48.076Z",
+    "updated_at": "2026-11-01T17:57:37.914Z"
+  },
+  "policy": {
+    "ponytail": "full",
+    "autonomy": "human-in-the-loop",
+    "learned_rule_promotion": "human-required",
+    "cleanup": "propose-only",
+    "traces": {
+      "storage": "local",
+      "commit_raw": false,
+      "redact_secrets": true
+    }
+  },
+  "lifecycle": {
+    "phase": "verify",
+    "status": "ready",
+    "active_task": null,
+    "blocker": null,
+    "next_action": "Review completed work and choose the next bounded outcome."
+  },
+  "commands": {},
+  "workflow": {
+    "type": "new-product",
+    "started_at": "2026-11-01T15:19:48.080Z",
+    "spec_check": {
+      "at": "2026-11-01T15:21:24.022Z",
+      "source_hash": "a690942044352da182f85eab0df747479af42d5e09b4dc0b211f575e63ba0ee6",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5"
+      ]
+    },
+    "plan_check": {
+      "at": "2026-11-01T15:26:58.231Z",
+      "source_hash": "5f635583317e3bcd0fe933e60c9c35ed74219efb2f048d3b091a6bb15aa4db16"
+    },
+    "plan_approval": {
+      "human": "Yash",
+      "reason": "Plan approved by Yash for 5 implementation tasks",
+      "at": "2026-11-01T15:28:40.991Z",
+      "source_hash": "5f635583317e3bcd0fe933e60c9c35ed74219efb2f048d3b091a6bb15aa4db16"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "SPEC-1",
+      "type": "specification",
+      "path": "SPEC.md",
+      "status": "approved",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5"
+      ],
+      "source_hash": "a690942044352da182f85eab0df747479af42d5e09b4dc0b211f575e63ba0ee6",
+      "approval": {
+        "human": "Yash",
+        "reason": "Approved by Yash for Contract Risk Detection & Explainer SLM for Confrere Global Legale",
+        "at": "2026-11-01T15:23:28.069Z",
+        "source_hash": "a690942044352da182f85eab0df747479af42d5e09b4dc0b211f575e63ba0ee6"
+      }
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "ASSUMPTION-a76db64b",
+      "text": "Target local host environment has Python 3 and MPS/CPU or GPU acceleration available for lightweight SLM inference, with fallback mock/evaluation harness for bounded tests.",
+      "status": "open",
+      "source": "System Environment",
+      "recorded_at": "2026-11-01T15:20:44.574Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INVARIANT-1c20658c",
+      "text": "The system must never present AI risk assessments as definitive legal conclusions; all risk labels represent review priorities to support, not replace, legal professionals.",
+      "source": "USER_REQUEST Section 1 & 2C",
+      "recorded_at": "2026-11-01T15:20:37.081Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-eeb8bf8f",
+      "text": "All conversational responses and risk findings must be grounded in contract evidence, referencing exact text and document sections/pages without hallucinating legal provisions.",
+      "source": "USER_REQUEST Section 2C, 2D, 6",
+      "recorded_at": "2026-11-01T15:20:37.139Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DECISION-594bc88e",
+      "title": "CGL Branding and Legal Professional Workflow",
+      "text": "Design application styling and UX inspired by Confrere Global Legale (cgl.world / cgladr.world) with navy/slate/gold palette, split-screen original document viewer and clause evidence, and advisory risk review priorities rather than definitive legal conclusions.",
+      "status": "accepted",
+      "source": "USER_REQUEST Section 1 & 7",
+      "recorded_at": "2026-11-01T15:20:22.930Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-da674aad",
+      "title": "Primary Dataset Strategy: CUAD, ACORD, and ContractNLI",
+      "text": "Use official CUAD (clause identification/extraction), ACORD (query-clause semantic retrieval), and ContractNLI (evidence verification/entailment) under CC BY 4.0 with contract-level train/validation/test split isolation to prevent data leakage.",
+      "status": "accepted",
+      "source": "USER_REQUEST Section 3 & 4",
+      "recorded_at": "2026-11-01T15:20:30.093Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-f030b7c5",
+      "title": "Model Architecture: 1B-3B SLM with PEFT LoRA and Clause RAG",
+      "text": "Target instruction-following 1B-3B parameter SLM (e.g. Qwen2.5 or Llama-3.2) fine-tuned via PEFT/LoRA on chat-formatted contract SFT records, combined with a clause-aware vector retrieval layer for evidence grounding.",
+      "status": "accepted",
+      "source": "USER_REQUEST Section 5 & 6",
+      "recorded_at": "2026-11-01T15:20:37.013Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "knowledge": [
+    {
+      "id": "KNOWLEDGE-21704e0b",
+      "title": "Dataset Provenance and Licensing",
+      "text": "CUAD, ACORD, and ContractNLI are CC BY 4.0 licensed expert-annotated legal datasets. Preprocessing must isolate by contract ID and normalize spans into a unified intermediate contract schema.",
+      "source": "USER_REQUEST Section 3",
+      "tags": [],
+      "recorded_at": "2026-11-01T15:20:44.470Z",
+      "paths": []
+    }
+  ],
+  "tasks": [
+    {
+      "id": "SPEC-1",
+      "outcome": "Produce an approved, implementation-ready product specification",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "SPEC.md"
+      ],
+      "dependencies": [],
+      "requirements": [],
+      "gates": [
+        {
+          "id": "independent-review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "human": "Yash",
+            "reason": "Approved by Yash for Contract Risk Detection & Explainer SLM for Confrere Global Legale",
+            "source_hash": "6bd9a7e738556918a22c7ea94c171892134f4b2998e59fa4965ae2a11655ca58",
+            "observed_at": "2026-11-01T15:23:28.069Z"
+          },
+          "kind": "review"
+        }
+      ],
+      "next_action": "Interview the human, record durable context, and replace every placeholder in SPEC.md.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:19:48.080Z",
+      "updated_at": "2026-11-01T15:23:28.069Z"
+    },
+    {
+      "id": "DATA-1",
+      "outcome": "Acquire official CUAD, ACORD, and ContractNLI datasets, validate CC BY 4.0 provenance, standardize schemas isolated by contract ID, and generate conversational SFT records",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src/data",
+        "tests/test_data_pipeline.py"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "FR-7",
+        "FR-8",
+        "NFR-5",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "SCENARIO-DATA-1",
+          "actor": "developer",
+          "scope": "src/data",
+          "environment": "local-python",
+          "duration": "60s",
+          "observable": "Validates CUAD/ACORD/ContractNLI dataset loading and SFT generation",
+          "gate": "unit"
+        }
+      ],
+      "gates": [
+        {
+          "id": "unit",
+          "kind": "command",
+          "command": "python3 -m unittest tests/test_data_pipeline.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/DATA-1-unit-def8af64-7d40-411a-a836-a039f76cba72.json",
+            "hash": "d7c7baf9083d95da9825a0b28f550c4aa2ae930018109635c1d754480d71bebe",
+            "source_hash": "c84fbc83ef5948633bb30184f5e39d8210c613a3ff42b0f9da9b63ad7dccfb19",
+            "config_hash": "2a39e3a613acfdb4685e8a00b658c7f6f47117ff166cbdaf5bc75466ae3bcfdf",
+            "observed_at": "2026-11-01T15:37:08.100Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:26:13.273Z",
+      "updated_at": "2026-11-01T15:37:14.641Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "bdfb2708bd9660956a669de92ea11e84adec664e7ade6725fb50efa6f6f301c8"
+      }
+    },
+    {
+      "id": "INGEST-1",
+      "outcome": "Implement multi-format PDF/DOCX ingestion preserving page coordinates, 14+ CUAD clause extraction, and grounded risk detection with priority scoring and lawyer review questions",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src/ingest",
+        "src/analysis",
+        "tests/test_ingest_analysis.py"
+      ],
+      "dependencies": [
+        "DATA-1"
+      ],
+      "requirements": [
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "NFR-1",
+        "AC-1",
+        "AC-2",
+        "AC-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "SCENARIO-INGEST-1",
+          "actor": "developer",
+          "scope": "src/ingest",
+          "environment": "local-python",
+          "duration": "60s",
+          "observable": "Extracts contract clauses and detects grounded risks from sample contracts",
+          "gate": "unit"
+        }
+      ],
+      "gates": [
+        {
+          "id": "unit",
+          "kind": "command",
+          "command": "python3 -m unittest tests/test_ingest_analysis.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/INGEST-1-unit-d1142cf0-9f62-46d4-abeb-6a4b1b73e300.json",
+            "hash": "52ec38c1b6833a8122caee66225fd2dfeb856aabd230be4d0abb18406883ea66",
+            "source_hash": "8e1b365fa8f5e35ded031ea5819d68ff52fd80e9af969bfd141b54a6e566286e",
+            "config_hash": "b8a640cfc675da0c67fa7d654434dab835593a283d50e1eb15115be3663477ec",
+            "observed_at": "2026-11-01T15:40:05.395Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:26:23.216Z",
+      "updated_at": "2026-11-01T15:40:14.559Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "bdfb2708bd9660956a669de92ea11e84adec664e7ade6725fb50efa6f6f301c8",
+        "src/data/__init__.py": "a617f568d7ac2019c25dd697fa668dde69b949cdf1f15b221d92659fc6d17029",
+        "src/data/acord_loader.py": "c1e60a66cb3332f33a000eeccc3e58c0e7e58ad61c0f9fc16e4b104975d4e07e",
+        "src/data/contract_nli_loader.py": "79a2a6453077c1e103a365e01219fe0581a1a89f1f8b9d41443d8abbcd9f26d0",
+        "src/data/cuad_loader.py": "81c671d39b66433287644d901666f9c6cfc3d1b6eb364b64e976387c201a5cf3",
+        "src/data/pipeline.py": "09fb66568ec683d9406361258e6bc60be51655584dc5a816142c201d4b5c17e6",
+        "src/data/schema.py": "0e3b58394a65602c7cc678bd513f4a1d0651d5fcbc4b8bd5e3eaaa8ad0e2b605",
+        "src/data/sft_builder.py": "0fdd5414b495ce5adcdd23633b86ce271d044d4381c5ff464664724ee52199b5",
+        "tests/test_data_pipeline.py": "a75e92284a24e266cea126128f52f3feb8eaf2933d06221bd06304db0583d3f4"
+      }
+    },
+    {
+      "id": "RAG-1",
+      "outcome": "Implement clause-aware vector retrieval and conversational contract explainer strictly grounded in contract evidence with page citations and session isolation",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src/retrieval",
+        "src/conversation",
+        "tests/test_retrieval_conversation.py"
+      ],
+      "dependencies": [
+        "INGEST-1"
+      ],
+      "requirements": [
+        "FR-4",
+        "NFR-2",
+        "NFR-3",
+        "AC-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "SCENARIO-RAG-1",
+          "actor": "developer",
+          "scope": "src/retrieval",
+          "environment": "local-python",
+          "duration": "60s",
+          "observable": "Retrieves relevant clauses and answers conversational questions grounded in evidence",
+          "gate": "unit"
+        }
+      ],
+      "gates": [
+        {
+          "id": "unit",
+          "kind": "command",
+          "command": "python3 -m unittest tests/test_retrieval_conversation.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/RAG-1-unit-37fcb756-93a9-42c3-acf3-ef5e09c064bf.json",
+            "hash": "fd13cec8cdf8b51a193ff46d18acf7bdf4141379588fa4bdd719dba0878f9253",
+            "source_hash": "d310be6c939e63167fdc7ecfbd5c35c6c3e16579412897bd2ebaff911b2873dd",
+            "config_hash": "22b44114f2f9d9bbc7d75fe7b8085a649886dae8a1ccfbca5190ad62f30c335a",
+            "observed_at": "2026-11-01T15:44:29.690Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:26:36.328Z",
+      "updated_at": "2026-11-01T15:44:43.083Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "bdfb2708bd9660956a669de92ea11e84adec664e7ade6725fb50efa6f6f301c8",
+        "src/analysis/__init__.py": "8a2ab378819e15ed8ce5e5d32385f011cdbd2917b20dfad9b398a58a77f36cc5",
+        "src/analysis/risk_engine.py": "128a32540609ba564afa495610fa4bc8f411a83cf82c90f6a30bec9a63834ffa",
+        "src/data/__init__.py": "a617f568d7ac2019c25dd697fa668dde69b949cdf1f15b221d92659fc6d17029",
+        "src/data/acord_loader.py": "c1e60a66cb3332f33a000eeccc3e58c0e7e58ad61c0f9fc16e4b104975d4e07e",
+        "src/data/contract_nli_loader.py": "79a2a6453077c1e103a365e01219fe0581a1a89f1f8b9d41443d8abbcd9f26d0",
+        "src/data/cuad_loader.py": "81c671d39b66433287644d901666f9c6cfc3d1b6eb364b64e976387c201a5cf3",
+        "src/data/pipeline.py": "09fb66568ec683d9406361258e6bc60be51655584dc5a816142c201d4b5c17e6",
+        "src/data/schema.py": "0e3b58394a65602c7cc678bd513f4a1d0651d5fcbc4b8bd5e3eaaa8ad0e2b605",
+        "src/data/sft_builder.py": "0fdd5414b495ce5adcdd23633b86ce271d044d4381c5ff464664724ee52199b5",
+        "src/ingest/__init__.py": "4c14f07244945a02a728d4299290f8c112f1f5653ff48d242e4f919fc8930b93",
+        "src/ingest/clause_extractor.py": "f88b4d24e01c2c5045149761d2bf0ed1a4a0a352e6fa7eba581d4483a076251f",
+        "src/ingest/parser.py": "3aef7bd55dbc146bfe42562362ad46a41e38351df9adeaf4b27e1dc4425d7754",
+        "tests/test_data_pipeline.py": "a75e92284a24e266cea126128f52f3feb8eaf2933d06221bd06304db0583d3f4",
+        "tests/test_ingest_analysis.py": "7613e179c8628d5e5b000122d25431eb2e6e405872e35fd3ade87f6c15e4eeac"
+      }
+    },
+    {
+      "id": "SLM-1",
+      "outcome": "Develop 1B-3B SLM parameter-efficient fine-tuning (PEFT/LoRA) pipeline and automated evaluation benchmark comparing pretrained baseline vs fine-tuned model",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src/models",
+        "tests/test_slm_eval.py"
+      ],
+      "dependencies": [
+        "DATA-1",
+        "RAG-1"
+      ],
+      "requirements": [
+        "FR-9",
+        "AC-8"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "SCENARIO-SLM-1",
+          "actor": "developer",
+          "scope": "src/models",
+          "environment": "local-python",
+          "duration": "60s",
+          "observable": "Evaluates SLM fine-tuning setup, LoRA configuration, and comparative evaluation metrics",
+          "gate": "unit"
+        }
+      ],
+      "gates": [
+        {
+          "id": "unit",
+          "kind": "command",
+          "command": "python3 -m unittest tests/test_slm_eval.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/SLM-1-unit-a063d1ce-9cf4-4724-97dd-3f868e0f476f.json",
+            "hash": "6ec2c5de1a77ff64cffa2d880a3915f3bf36d56920e5b30596d78e262794bd60",
+            "source_hash": "5ebc38b15200115f59b36f9ad148dc90ed987ae7fe69fafc9bde13e1eef4faee",
+            "config_hash": "2adc1cd1d8659be4612fff0890d6c72179ab6b86557b2b7ba45674c87898b6b0",
+            "observed_at": "2026-11-01T15:46:41.920Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:26:44.911Z",
+      "updated_at": "2026-11-01T15:46:49.108Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "bdfb2708bd9660956a669de92ea11e84adec664e7ade6725fb50efa6f6f301c8",
+        "src/analysis/__init__.py": "8a2ab378819e15ed8ce5e5d32385f011cdbd2917b20dfad9b398a58a77f36cc5",
+        "src/analysis/risk_engine.py": "128a32540609ba564afa495610fa4bc8f411a83cf82c90f6a30bec9a63834ffa",
+        "src/conversation/__init__.py": "63f9e4939ffc07bd9555c9a0c64f4b845c9bae9582befd2c8312c37048b264f1",
+        "src/conversation/explainer.py": "99a49af7942fb446b394d88d97f688a30a8ce5d21ea71cab4fe28a4d062f45de",
+        "src/data/__init__.py": "a617f568d7ac2019c25dd697fa668dde69b949cdf1f15b221d92659fc6d17029",
+        "src/data/acord_loader.py": "c1e60a66cb3332f33a000eeccc3e58c0e7e58ad61c0f9fc16e4b104975d4e07e",
+        "src/data/contract_nli_loader.py": "79a2a6453077c1e103a365e01219fe0581a1a89f1f8b9d41443d8abbcd9f26d0",
+        "src/data/cuad_loader.py": "81c671d39b66433287644d901666f9c6cfc3d1b6eb364b64e976387c201a5cf3",
+        "src/data/pipeline.py": "09fb66568ec683d9406361258e6bc60be51655584dc5a816142c201d4b5c17e6",
+        "src/data/schema.py": "0e3b58394a65602c7cc678bd513f4a1d0651d5fcbc4b8bd5e3eaaa8ad0e2b605",
+        "src/data/sft_builder.py": "0fdd5414b495ce5adcdd23633b86ce271d044d4381c5ff464664724ee52199b5",
+        "src/ingest/__init__.py": "4c14f07244945a02a728d4299290f8c112f1f5653ff48d242e4f919fc8930b93",
+        "src/ingest/clause_extractor.py": "f88b4d24e01c2c5045149761d2bf0ed1a4a0a352e6fa7eba581d4483a076251f",
+        "src/ingest/parser.py": "3aef7bd55dbc146bfe42562362ad46a41e38351df9adeaf4b27e1dc4425d7754",
+        "src/retrieval/__init__.py": "a1b0478cfc2e1f7ccc8e915681015ca414a98d85fc7df5a0c4c5194564c6528c",
+        "src/retrieval/vector_store.py": "ad56a616563844861fa8de77bc7f5bd4a343c89dc3ed1bd8eae8d7353d1a8515",
+        "tests/test_data_pipeline.py": "a75e92284a24e266cea126128f52f3feb8eaf2933d06221bd06304db0583d3f4",
+        "tests/test_ingest_analysis.py": "7613e179c8628d5e5b000122d25431eb2e6e405872e35fd3ade87f6c15e4eeac",
+        "tests/test_retrieval_conversation.py": "d035a79397916c312010f37acd765ceaa6fcde5c9243c7d6c9f81a91f2e8bfb1"
+      }
+    },
+    {
+      "id": "UI-1",
+      "outcome": "Build CGL-branded split-screen web application with original contract viewer, clause explorer, risk badges, conversational panel, and review report exporter",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src/server",
+        "web",
+        "tests/test_app_report.py"
+      ],
+      "dependencies": [
+        "INGEST-1",
+        "RAG-1"
+      ],
+      "requirements": [
+        "FR-5",
+        "FR-6",
+        "NFR-4",
+        "AC-5",
+        "AC-6"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "SCENARIO-UI-1",
+          "actor": "developer",
+          "scope": "src/server",
+          "environment": "local-python",
+          "duration": "60s",
+          "observable": "Validates web API endpoints, CGL layout rendering, and contract report generation",
+          "gate": "unit"
+        }
+      ],
+      "gates": [
+        {
+          "id": "unit",
+          "kind": "command",
+          "command": "python3 -m unittest tests/test_app_report.py",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/UI-1-unit-c1f09777-ccca-4256-8720-4e6efd404aab.json",
+            "hash": "23dcc6bd85ff6c093ea42a8f5094716328da03b6f3dc8c024bad364003744974",
+            "source_hash": "52c967da93181fcbc005eece38286f9ec7d8fa0283973e666ed4c21a824bedaf",
+            "config_hash": "6b39ba430c2c4e89827abe5688439eac1dad8b087188253643732b61f4be5d8c",
+            "observed_at": "2026-11-01T15:51:12.399Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-11-01T15:26:52.768Z",
+      "updated_at": "2026-11-01T15:51:12.580Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "bdfb2708bd9660956a669de92ea11e84adec664e7ade6725fb50efa6f6f301c8",
+        "src/analysis/__init__.py": "8a2ab378819e15ed8ce5e5d32385f011cdbd2917b20dfad9b398a58a77f36cc5",
+        "src/analysis/risk_engine.py": "128a32540609ba564afa495610fa4bc8f411a83cf82c90f6a30bec9a63834ffa",
+        "src/conversation/__init__.py": "63f9e4939ffc07bd9555c9a0c64f4b845c9bae9582befd2c8312c37048b264f1",
+        "src/conversation/explainer.py": "99a49af7942fb446b394d88d97f688a30a8ce5d21ea71cab4fe28a4d062f45de",
+        "src/data/__init__.py": "a617f568d7ac2019c25dd697fa668dde69b949cdf1f15b221d92659fc6d17029",
+        "src/data/acord_loader.py": "c1e60a66cb3332f33a000eeccc3e58c0e7e58ad61c0f9fc16e4b104975d4e07e",
+        "src/data/contract_nli_loader.py": "79a2a6453077c1e103a365e01219fe0581a1a89f1f8b9d41443d8abbcd9f26d0",
+        "src/data/cuad_loader.py": "81c671d39b66433287644d901666f9c6cfc3d1b6eb364b64e976387c201a5cf3",
+        "src/data/pipeline.py": "09fb66568ec683d9406361258e6bc60be51655584dc5a816142c201d4b5c17e6",
+        "src/data/schema.py": "0e3b58394a65602c7cc678bd513f4a1d0651d5fcbc4b8bd5e3eaaa8ad0e2b605",
+        "src/data/sft_builder.py": "0fdd5414b495ce5adcdd23633b86ce271d044d4381c5ff464664724ee52199b5",
+        "src/ingest/__init__.py": "4c14f07244945a02a728d4299290f8c112f1f5653ff48d242e4f919fc8930b93",
+        "src/ingest/clause_extractor.py": "f88b4d24e01c2c5045149761d2bf0ed1a4a0a352e6fa7eba581d4483a076251f",
+        "src/ingest/parser.py": "3aef7bd55dbc146bfe42562362ad46a41e38351df9adeaf4b27e1dc4425d7754",
+        "src/models/__init__.py": "adc3f44ef739340055c8a1f2e99d80dccd7f98e8cb689c1247007b6f2ccfdd75",
+        "src/models/benchmark.py": "fb9224613b462e75353bf77b1a4f2a8ac3b9f2743795c97edcfeedac2a76aee3",
+        "src/models/inference.py": "87109f6461e02a717e1237bc49fd7feb620a40e46f56fb0460b113cae8a238d1",
+        "src/models/lora_config.py": "87938fc97dbddc8508d72f2354ed38e4b9ec1976c71a6cc3026a94380acb0ac0",
+        "src/models/train_slm.py": "304235fcd89606fbd6c8389d31d5b7c81b5006239d869a79df0fa000f85023ad",
+        "src/retrieval/__init__.py": "a1b0478cfc2e1f7ccc8e915681015ca414a98d85fc7df5a0c4c5194564c6528c",
+        "src/retrieval/vector_store.py": "ad56a616563844861fa8de77bc7f5bd4a343c89dc3ed1bd8eae8d7353d1a8515",
+        "tests/test_data_pipeline.py": "a75e92284a24e266cea126128f52f3feb8eaf2933d06221bd06304db0583d3f4",
+        "tests/test_ingest_analysis.py": "7613e179c8628d5e5b000122d25431eb2e6e405872e35fd3ade87f6c15e4eeac",
+        "tests/test_retrieval_conversation.py": "d035a79397916c312010f37acd765ceaa6fcde5c9243c7d6c9f81a91f2e8bfb1",
+        "tests/test_slm_eval.py": "cacf2f8177259eef7bb6eec125b88d21cdbc9f0f89a1d4681bc6c23b258bdc45"
+      }
+    }
+  ],
+  "learning_proposals": [],
+  "cleanup_proposals": [],
+  "controls": [],
+  "attempts": [
+    {
+      "id": "1544e2c1-18ae-4fec-85a4-4133a2bee831",
+      "task": "DATA-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_data_pipeline.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 42284,
+      "child_pid": 42325,
+      "started_at": "2026-11-01T15:35:01.963Z",
+      "status": "passed",
+      "before_hash": "50ca264cda5c02d43e9d17535e9eaa4f91011ba7a7475024067022daf5e0376d",
+      "config_hash": "2a39e3a613acfdb4685e8a00b658c7f6f47117ff166cbdaf5bc75466ae3bcfdf",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:35:02.130Z"
+    },
+    {
+      "id": "def8af64-7d40-411a-a836-a039f76cba72",
+      "task": "DATA-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_data_pipeline.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 42603,
+      "child_pid": 42676,
+      "started_at": "2026-11-01T15:37:07.905Z",
+      "status": "passed",
+      "before_hash": "c84fbc83ef5948633bb30184f5e39d8210c613a3ff42b0f9da9b63ad7dccfb19",
+      "config_hash": "2a39e3a613acfdb4685e8a00b658c7f6f47117ff166cbdaf5bc75466ae3bcfdf",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:37:08.100Z"
+    },
+    {
+      "id": "d1142cf0-9f62-46d4-abeb-6a4b1b73e300",
+      "task": "INGEST-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_ingest_analysis.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 43109,
+      "child_pid": 43158,
+      "started_at": "2026-11-01T15:40:05.249Z",
+      "status": "passed",
+      "before_hash": "8e1b365fa8f5e35ded031ea5819d68ff52fd80e9af969bfd141b54a6e566286e",
+      "config_hash": "b8a640cfc675da0c67fa7d654434dab835593a283d50e1eb15115be3663477ec",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:40:05.395Z"
+    },
+    {
+      "id": "37fcb756-93a9-42c3-acf3-ef5e09c064bf",
+      "task": "RAG-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_retrieval_conversation.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 43695,
+      "child_pid": 43752,
+      "started_at": "2026-11-01T15:44:29.534Z",
+      "status": "passed",
+      "before_hash": "d310be6c939e63167fdc7ecfbd5c35c6c3e16579412897bd2ebaff911b2873dd",
+      "config_hash": "22b44114f2f9d9bbc7d75fe7b8085a649886dae8a1ccfbca5190ad62f30c335a",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:44:29.690Z"
+    },
+    {
+      "id": "a063d1ce-9cf4-4724-97dd-3f868e0f476f",
+      "task": "SLM-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_slm_eval.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44222,
+      "child_pid": 44287,
+      "started_at": "2026-11-01T15:46:41.711Z",
+      "status": "passed",
+      "before_hash": "5ebc38b15200115f59b36f9ad148dc90ed987ae7fe69fafc9bde13e1eef4faee",
+      "config_hash": "2adc1cd1d8659be4612fff0890d6c72179ab6b86557b2b7ba45674c87898b6b0",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:46:41.920Z"
+    },
+    {
+      "id": "c02836bc-333c-439a-a90e-0a31c2e84b53",
+      "task": "UI-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_app_report.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44868,
+      "child_pid": 44941,
+      "started_at": "2026-11-01T15:50:36.942Z",
+      "status": "passed",
+      "before_hash": "2f2ddbff6154779cc5304143339e677459de2b91971fd1f2dc39259295950451",
+      "config_hash": "6b39ba430c2c4e89827abe5688439eac1dad8b087188253643732b61f4be5d8c",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:50:37.370Z"
+    },
+    {
+      "id": "c1f09777-ccca-4256-8720-4e6efd404aab",
+      "task": "UI-1",
+      "kind": "gate",
+      "command": "python3 -m unittest tests/test_app_report.py",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 45206,
+      "child_pid": 45311,
+      "started_at": "2026-11-01T15:51:11.886Z",
+      "status": "passed",
+      "before_hash": "52c967da93181fcbc005eece38286f9ec7d8fa0283973e666ed4c21a824bedaf",
+      "config_hash": "6b39ba430c2c4e89827abe5688439eac1dad8b087188253643732b61f4be5d8c",
+      "environment": {
+        "node": "v26.8.1",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-11-01T15:51:12.399Z"
+    }
+  ],
+  "authorizations": [],
+  "experiments": [],
+  "incidents": [],
+  "discovery": null,
+  "checkpoint": {
+    "at": "2026-11-01T17:57:37.876Z",
+    "revision": {
+      "commit": null,
+      "dirty": null,
+      "source_hash": "41e44010d1f263141c47335cc3c5f14643e633cbc029ac52ac7f02a829951c62"
+    },
+    "active_task": null,
+    "next_action": "Review completed work and choose the next bounded outcome."
+  },
+  "legacy": null
+}

@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 2,
+  "project": "Legal RAG",
+  "revision": null,
+  "sourceHash": "6adc5a8dd1b823f05fd6709cf36b9f52e1b553f16100befafa0c8b73bee17096",
+  "provenance": {
+    "tool": "genesis-graphizer",
+    "method": "static-analysis",
+    "confidenceScale": "0..1"
+  },
+  "nodes": [
+    {
+      "id": "file:src/analysis/__init__.py",
+      "type": "file",
+      "label": "src/analysis/__init__.py",
+      "path": "src/analysis/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "bf6cfaf8431e7d3c37eec1b7673b7920e38a6de6950d8cb16854d859d5c2c87c"
+    },
+    {
+      "id": "file:src/analysis/risk_engine.py",
+      "type": "file",
+      "label": "src/analysis/risk_engine.py",
+      "path": "src/analysis/risk_engine.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "a5b6a569529b775c8c2dde3eaa52ac745ff10ad21980b2e25c86f8a1fa1b5437"
+    },
+    {
+      "id": "file:src/conversation/__init__.py",
+      "type": "file",
+      "label": "src/conversation/__init__.py",
+      "path": "src/conversation/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "07323ced7739483140a332e763ba0931c4fb6bb55d28351fe2517e4db337e8bf"
+    },
+    {
+      "id": "file:src/conversation/explainer.py",
+      "type": "file",
+      "label": "src/conversation/explainer.py",
+      "path": "src/conversation/explainer.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "9309b1e95a8f1696acec0bc5cefaff05818564fc07e639b57cc49a0757ba4246"
+    },
+    {
+      "id": "file:src/data/__init__.py",
+      "type": "file",
+      "label": "src/data/__init__.py",
+      "path": "src/data/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "90426ff28ea87a7a0e8922df99acec24f1840775ba813bc4caf177e795fde5be"
+    },
+    {
+      "id": "file:src/data/acord_loader.py",
+      "type": "file",
+      "label": "src/data/acord_loader.py",
+      "path": "src/data/acord_loader.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "390f2a1cf122f4a24b79f774207e25ff50eb2154fa552792cfbe675bc9b73be1"
+    },
+    {
+      "id": "file:src/data/contract_nli_loader.py",
+      "type": "file",
+      "label": "src/data/contract_nli_loader.py",
+      "path": "src/data/contract_nli_loader.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "6ffa7ed2dca68729e1d398aa8cb208d9dbfdd3d5888f2514444e3ec2dd634977"
+    },
+    {
+      "id": "file:src/data/cuad_loader.py",
+      "type": "file",
+      "label": "src/data/cuad_loader.py",
+      "path": "src/data/cuad_loader.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "0f1eb2651203f1faf03cbdc33060a3c26a9210e37117299eabbfc82d1bd6a745"
+    },
+    {
+      "id": "file:src/data/pipeline.py",
+      "type": "file",
+      "label": "src/data/pipeline.py",
+      "path": "src/data/pipeline.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "527f54f84ed5a4f7c6c8e0c9b2756577fa5833286f9a4bc23aee853b795cf85e"
+    },
+    {
+      "id": "file:src/data/schema.py",
+      "type": "file",
+      "label": "src/data/schema.py",
+      "path": "src/data/schema.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "b041abe6d56086af98159973264cb327b4ac863adad9105b2998c446b8f59e1b"
+    },
+    {
+      "id": "file:src/data/sft_builder.py",
+      "type": "file",
+      "label": "src/data/sft_builder.py",
+      "path": "src/data/sft_builder.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "eeca04384e33ce6d5bc68c7fee2e9a5103539ccdbb8a65c022f6327bfe36e5e1"
+    },
+    {
+      "id": "file:src/ingest/__init__.py",
+      "type": "file",
+      "label": "src/ingest/__init__.py",
+      "path": "src/ingest/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "facee913e96b32627516421c7d6ab3cc7847a9a41a8467cb30a6a58cd8b3f0f2"
+    },
+    {
+      "id": "file:src/ingest/clause_extractor.py",
+      "type": "file",
+      "label": "src/ingest/clause_extractor.py",
+      "path": "src/ingest/clause_extractor.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "1d9cef46080ebce01dad6d67288fc1421d59ead56fd99cb9d6f8eda0fdece3be"
+    },
+    {
+      "id": "file:src/ingest/parser.py",
+      "type": "file",
+      "label": "src/ingest/parser.py",
+      "path": "src/ingest/parser.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "9fff2dc8044bcd9d8a21a0f0374fcb8a017a8472985163a6b85832942bffa5a3"
+    },
+    {
+      "id": "file:src/models/__init__.py",
+      "type": "file",
+      "label": "src/models/__init__.py",
+      "path": "src/models/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d0d915a352a5aca5126e587484c6a8483a7bd95e4aefbd4ee8e3f27754542e2d"
+    },
+    {
+      "id": "file:src/models/benchmark.py",
+      "type": "file",
+      "label": "src/models/benchmark.py",
+      "path": "src/models/benchmark.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "c33d2d74f50366b8500356e2a46a7cfbfbcd11a5435f7e790761dcafe30390e2"
+    },
+    {
+      "id": "file:src/models/inference.py",
+      "type": "file",
+      "label": "src/models/inference.py",
+      "path": "src/models/inference.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "296fcda8a674371008c3227d1a409ef89d5335a0584e18080bf2c1383a145a32"
+    },
+    {
+      "id": "file:src/models/lora_config.py",
+      "type": "file",
+      "label": "src/models/lora_config.py",
+      "path": "src/models/lora_config.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "57c1c1882b710612dd2801279ddb16f70c68b284fb486d04ea8ddaad7c369523"
+    },
+    {
+      "id": "file:src/models/train_slm.py",
+      "type": "file",
+      "label": "src/models/train_slm.py",
+      "path": "src/models/train_slm.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d67abbc9e37b6ac7bec2326968af05f91bb95c82db3d196b7dc991da147746de"
+    },
+    {
+      "id": "file:src/retrieval/__init__.py",
+      "type": "file",
+      "label": "src/retrieval/__init__.py",
+      "path": "src/retrieval/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "91e94812fe63a315c48c24afa0e08adc0ff41b7a0b7f1ac31536e54f43835d17"
+    },
+    {
+      "id": "file:src/retrieval/vector_store.py",
+      "type": "file",
+      "label": "src/retrieval/vector_store.py",
+      "path": "src/retrieval/vector_store.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e8946b9365552f8b865350ab7bc99d0ea54bd5984950060e07caf38eb73da641"
+    },
+    {
+      "id": "file:src/server/__init__.py",
+      "type": "file",
+      "label": "src/server/__init__.py",
+      "path": "src/server/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "c22d64b54e3005db15a02e20dac6c2cba5ddf45f4af28083adb397c7d0ae4acb"
+    },
+    {
+      "id": "file:src/server/app.py",
+      "type": "file",
+      "label": "src/server/app.py",
+      "path": "src/server/app.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "bd839972875d0cd26346e618dc61669030c12606143454e17a143219b5c121db"
+    },
+    {
+      "id": "file:src/server/report_generator.py",
+      "type": "file",
+      "label": "src/server/report_generator.py",
+      "path": "src/server/report_generator.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "5c8f5afa91ddd119bd0a42a894f6d9773a2b83902a0e2e6b4fcbd1a1057e8e00"
+    },
+    {
+      "id": "file:tests/test_app_report.py",
+      "type": "file",
+      "label": "tests/test_app_report.py",
+      "path": "tests/test_app_report.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "98cd28bb56d0cde3979b7f0a7ce09c6563759c4743034267624e2b45ab128ee9"
+    },
+    {
+      "id": "file:tests/test_data_pipeline.py",
+      "type": "file",
+      "label": "tests/test_data_pipeline.py",
+      "path": "tests/test_data_pipeline.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "470f5194ce13d23bf7677098c2e62def38cc5494f0d74fbc6934867d4a295cde"
+    },
+    {
+      "id": "file:tests/test_ingest_analysis.py",
+      "type": "file",
+      "label": "tests/test_ingest_analysis.py",
+      "path": "tests/test_ingest_analysis.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d49e5fcd60151c97c98f6ee68f15968e6de38695d1c3cbd5085af7b0c21dd021"
+    },
+    {
+      "id": "file:tests/test_retrieval_conversation.py",
+      "type": "file",
+      "label": "tests/test_retrieval_conversation.py",
+      "path": "tests/test_retrieval_conversation.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "ac831d11e3b116e16960b8c64eddad66dfeb089d2b8999a8b7f07b1c9b5d6443"
+    },
+    {
+      "id": "file:tests/test_slm_eval.py",
+      "type": "file",
+      "label": "tests/test_slm_eval.py",
+      "path": "tests/test_slm_eval.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "ea43252b2ac8fe66befba39967f9a5279dd6b8b334eb229a029fa0cbfaf76dc4"
+    }
+  ],
+  "edges": [],
+  "warnings": [
+    "Python AST unavailable: Traceback (most recent call last):\n  File \"<string>\", line 30, in <module>\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.py\", line 407, in visit\n    return visitor(node)\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.py\", line 415, in generic_visit\n    self.visit(item)\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.py\", line 407, in visit\n    return visitor(node)\n  File \"<string>\", line 11, in visit_ImportFrom\nAttributeError: module 'sys' has no attribute 'stdlib_module_names'"
+  ],
+  "stats": {
+    "unresolvedCalls": 0
+  }
+}

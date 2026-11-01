@@ -1,0 +1,34 @@
+digraph genesis {
+  rankdir=LR;
+  node [shape=box,fontname="system-ui"];
+  "file:src/analysis/__init__.py" [label="src/analysis/__init__.py",class="file"];
+  "file:src/analysis/risk_engine.py" [label="src/analysis/risk_engine.py",class="file"];
+  "file:src/conversation/__init__.py" [label="src/conversation/__init__.py",class="file"];
+  "file:src/conversation/explainer.py" [label="src/conversation/explainer.py",class="file"];
+  "file:src/data/__init__.py" [label="src/data/__init__.py",class="file"];
+  "file:src/data/acord_loader.py" [label="src/data/acord_loader.py",class="file"];
+  "file:src/data/contract_nli_loader.py" [label="src/data/contract_nli_loader.py",class="file"];
+  "file:src/data/cuad_loader.py" [label="src/data/cuad_loader.py",class="file"];
+  "file:src/data/pipeline.py" [label="src/data/pipeline.py",class="file"];
+  "file:src/data/schema.py" [label="src/data/schema.py",class="file"];
+  "file:src/data/sft_builder.py" [label="src/data/sft_builder.py",class="file"];
+  "file:src/ingest/__init__.py" [label="src/ingest/__init__.py",class="file"];
+  "file:src/ingest/clause_extractor.py" [label="src/ingest/clause_extractor.py",class="file"];
+  "file:src/ingest/parser.py" [label="src/ingest/parser.py",class="file"];
+  "file:src/models/__init__.py" [label="src/models/__init__.py",class="file"];
+  "file:src/models/benchmark.py" [label="src/models/benchmark.py",class="file"];
+  "file:src/models/inference.py" [label="src/models/inference.py",class="file"];
+  "file:src/models/lora_config.py" [label="src/models/lora_config.py",class="file"];
+  "file:src/models/train_slm.py" [label="src/models/train_slm.py",class="file"];
+  "file:src/retrieval/__init__.py" [label="src/retrieval/__init__.py",class="file"];
+  "file:src/retrieval/vector_store.py" [label="src/retrieval/vector_store.py",class="file"];
+  "file:src/server/__init__.py" [label="src/server/__init__.py",class="file"];
+  "file:src/server/app.py" [label="src/server/app.py",class="file"];
+  "file:src/server/report_generator.py" [label="src/server/report_generator.py",class="file"];
+  "file:tests/test_app_report.py" [label="tests/test_app_report.py",class="file"];
+  "file:tests/test_data_pipeline.py" [label="tests/test_data_pipeline.py",class="file"];
+  "file:tests/test_ingest_analysis.py" [label="tests/test_ingest_analysis.py",class="file"];
+  "file:tests/test_retrieval_conversation.py" [label="tests/test_retrieval_conversation.py",class="file"];
+  "file:tests/test_slm_eval.py" [label="tests/test_slm_eval.py",class="file"];
+
+}

@@ -1,0 +1,30 @@
+{
+  "task": "UI-1",
+  "gate": "unit",
+  "kind": "command",
+  "attempt": "c1f09777-ccca-4256-8720-4e6efd404aab",
+  "command": "python3 -m unittest tests/test_app_report.py",
+  "started_at": "2026-11-01T15:51:11.886Z",
+  "observed_at": "2026-11-01T15:51:12.399Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "",
+  "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.024s\n\nOK\n",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "52c967da93181fcbc005eece38286f9ec7d8fa0283973e666ed4c21a824bedaf",
+  "before_hash": "52c967da93181fcbc005eece38286f9ec7d8fa0283973e666ed4c21a824bedaf",
+  "config_hash": "6b39ba430c2c4e89827abe5688439eac1dad8b087188253643732b61f4be5d8c",
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "23dcc6bd85ff6c093ea42a8f5094716328da03b6f3dc8c024bad364003744974"
+}
