@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "project": "Legal RAG",
-  "revision": null,
+  "revision": "1f4d30ee62bceb91f3598732c2ef649ce06dbfa1",
   "sourceHash": "6adc5a8dd1b823f05fd6709cf36b9f52e1b553f16100befafa0c8b73bee17096",
   "provenance": {
     "tool": "genesis-graphizer",
