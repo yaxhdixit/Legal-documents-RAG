@@ -15,7 +15,7 @@ Load Genesis and official Ponytail full, then run `genesis brief .` for the curr
 Fetch full records with `genesis context . --id ID` only when needed. Do not load project.json or historical proof wholesale.
 Ask the index before reading code: `genesis query . search|scope|callers|callees|impact|path` (`--json` for parsing). Run `genesis query . impact PATH` before editing shared code. Answers are advisory static analysis; `ambiguous` means candidates were not ruled out, so confirm in source.
 Run `genesis serve .` for a live map of the repository when structure is unclear; it reindexes on save and is read-only. Run `genesis index .` if the index is stale and nothing is watching.
-Context fingerprint: c1488aa0dee1f6cfe50008061148c3da8cd76389b861d7f64f0c4af53d091524. Use --since only after receiving that full packet; kickoff is not the packet.
+Context fingerprint: 399a6800d8ee9d88c585e6a7e10782c9cdc68036236a11a2f700222bbae2e6a3. Use --since only after receiving that full packet; kickoff is not the packet.
 - DECISION-f030b7c5: Model Architecture: 1B-3B SLM with PEFT LoRA and Clause RAG
 - DECISION-da674aad: Primary Dataset Strategy: CUAD, ACORD, and ContractNLI
 - ASSUMPTION-a76db64b: Target local host environment has Python 3 and MPS/CPU or GPU acceleration available for lightweight…
